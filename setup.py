@@ -12,8 +12,8 @@ setuptools.setup(
   author_email='author@domain.ext',
   license='the licence',
   packages=['thonnycontrib.thonny-py5mode'],
-  install_requires=['install-jdk'],
-  dependency_links=['https://github.com/hx2A/py5.git@0.5a1.dev0#egg=py5'],
+  # install_requires=['install-jdk', 'py5'], this'll replace the line below when the new py5 is released
+  install_requires=['install-jdk'], dependency_links=['https://github.com/hx2A/py5.git@0.5a1.dev0#egg=py5'],
   classifiers=[
     # complete classifier list: https://pypi.org/pypi?%3Aaction=list_classifiers
     'Development Status :: 1 - Planning'
