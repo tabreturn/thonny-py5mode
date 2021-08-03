@@ -8,11 +8,11 @@ This plugin is designed to work with the portable version of Thonny.
 
 2. Extract this archive and place the *thonny* folder wherever you like (this runs like a portable app, no installer required).
 
-3. Open your terminal and `cd` to `thonny/bin/`; download this repo into that directory and run `./pip3 thonny-py5mode` (which uses the pip that ships with Thonny to install packages for the bundled Python interpreter)
+3. Open your terminal and `cd` to `thonny/bin/`; download this repo into that directory and run `./pip3 thonny-py5mode` (which uses the pip that ships with Thonny to install packages for the bundled Python interpreter).
 
-4. Run `thonny/bin/thonny` (preferably from your terminal so that you can see the plugin logging messages)
+4. Run `thonny/bin/thonny` (preferably from your terminal so that you can see the plugin logging messages).
 
-5. In Thonny, select *Tools > py5* (this'll download and extract JDK-11 into `thonny/bin/jdk-11` and set `JAVA_HOME` to that path)
+5. In Thonny, select *Tools > py5* (this'll download and extract JDK-11 into `thonny/bin/jdk-11` and set `JAVA_HOME` to that path).
 
 6. Try out a sketch (I haven't programmed 'imported mode' support yet):
 
