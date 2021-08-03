@@ -30,7 +30,7 @@ py5.run_sketch()
 I'm basically trying to automate this process:  
 https://tabreturn.github.io/code/python/thonny/2021/06/21/thonny_and_py5.html
 
-I was inspired to get started on this by [villares](https://github.com/villares/thonny-blue-code-format), and it'll likely end up integrated into this: https://github.com/villares/thonny-blue-code-format
+I was inspired to get started on this by [villares](https://github.com/villares/thonny-py5-runner), and it'll likely end up integrated into this: https://github.com/villares/thonny-blue-code-format
 
 If you're interested in Python for creative coding, and don't know about [hx2A's](https://github.com/hx2A) py5 project, you need to check it out now!
 
