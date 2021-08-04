@@ -34,11 +34,11 @@ py5.run_sketch()
 I'm basically trying to automate this process:  
 https://tabreturn.github.io/code/python/thonny/2021/06/21/thonny_and_py5.html
 
-**You may prefer your packages installed in the thonny app folder -- this is neat because you end up with a portable version of Thonny that includes everything to run py5!** The Thonny plug-in (and package) manager will install packages to `/home/user/.local/lib/`. To use your Thonny app folder instead, use *Tools > Open system shell...* -- this will open a terminal window with a list of `pip` commands. Use the one located in your thonny folder (see image below). In other words, enter `pip3 install thonny-py5mode` to install.
+**You may prefer your packages installed in the thonny app folder -- this is neat because you end up with a portable version of Thonny that includes everything to run py5!** The Thonny plug-in (and package) manager will install packages to `/home/user/.local/lib/`. To use your Thonny app folder instead, use *Tools > Open system shell...* -- this will open a terminal window with a list of `pip` commands. Use the one located in your thonny folder (see image below). In other words, enter `pip3 install thonny-py5mode` to install the plugin.
 
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/terminal_pip.png)
 
-I was inspired to get started on this by [villares](https://github.com/villares/thonny-py5-runner), and thonny-py5mode will likely end up integrated into this.
+I was inspired to get started on this by [villares' experiment](https://github.com/villares/thonny-py5-runner), and thonny-py5mode will likely end up integrated into this.
 
 If you're interested in Python for creative coding and don't know about [hx2A's](https://github.com/hx2A) py5 project, you need to check it out now!
 
