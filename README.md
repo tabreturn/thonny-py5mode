@@ -36,7 +36,7 @@ https://tabreturn.github.io/code/python/thonny/2021/06/21/thonny_and_py5.html
 
 **You may prefer your packages installed in the thonny app folder -- this is neat because you end up with a portable version of Thonny that includes everything to run py5!** The Thonny plug-in (and package) manager will install packages to `/home/user/.local/lib/`. To use your Thonny app folder instead, use *Tools > Open system shell...* -- this will open a terminal window with a list of `pip` commands. Use the one located in your thonny folder (see image below). In other words, enter `pip3 install thonny-py5mode` to install.
 
-![](terminal.pip)
+![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/terminal_pip.png)
 
 I was inspired to get started on this by [villares](https://github.com/villares/thonny-py5-runner), and thonny-py5mode will likely end up integrated into this.
 
