@@ -82,7 +82,7 @@ def test():
 
 
 def load_plugin():
-    get_workbench().add_command(command_id="py5",
+    get_workbench().add_command(command_id="Activate py5 mode",
                                 menu_name="tools",
-                                command_label="py5",
+                                command_label="Activate py5 mode",
                                 handler=test)
