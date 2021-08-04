@@ -4,7 +4,7 @@
 
 This plugin is designed to work with the portable version of Thonny.
 
-**Development on this package has just begun; thonny-py5mode still its experimental stages**
+**Development on this package has just begun; thonny-py5mode is still in its experimental stages**
 
 1. Download the *-alt* version of the Thonny IDE (for Python 3.9 support): https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-x86_64-alt.tar.gz
 
