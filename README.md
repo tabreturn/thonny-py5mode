@@ -44,5 +44,8 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 
 ## todo list
 
-- ~~get started~~
-- lots more ...
+- ~~Get started~~
+- Display download/installation progress in Thonny (not the terminal)
+- Add support for [py5 imported mode](http://py5.ixora.io/tutorials/py5-modes/#imported-mode)
+- Buttons and indicators! How does one switch between modes using Thonny; how is this reflected in the interface?
+- ...
