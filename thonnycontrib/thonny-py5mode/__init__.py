@@ -5,7 +5,7 @@ py5 plugin for Thonny.
 '''
 
 __version__ = "0.0.1"
-__author__ = 'author name'
+__author__ = 'tabreturn'
 __credits__ = 'organisation name'
 
 
@@ -78,7 +78,6 @@ from tkinter.messagebox import showinfo
 
 
 def test():
-    #showinfo("Hello!", "Thonny rules!")
     showinfo('Py5 ready!', activatePy5())
 
 

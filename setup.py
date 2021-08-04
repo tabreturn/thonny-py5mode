@@ -1,21 +1,25 @@
-import setuptools
+import pathlib
+from setuptools import setup
 
-with open('README.md', 'r') as fh:
-    long_description = fh.read()
+README = (pathlib.Path(__file__).parent / 'README.md').read_text()
 
-setuptools.setup(
+setup(
   name='thonny-py5mode',
-  version='0.0.1',    
-  description='py5 plugin for Thonny',
-  url='https://github.com/user/repo',
-  author='author name',
-  author_email='author@domain.ext',
-  license='the licence',
-  packages=['thonnycontrib.thonny-py5mode'],
-  # install_requires=['install-jdk', 'py5'], this'll replace the line below when the new py5 is released
-  install_requires=['install-jdk'], dependency_links=['https://github.com/hx2A/py5.git@0.5a1.dev0#egg=py5'],
+  version='0.1.0-alpha',    
+  description='py5 mode plugin for Thonny',
+  long_description = README,
+  long_description_content_type='text/markdown',
+  url='https://github.com/tabreturn/thonny-py5mode',
+  author='tabreturn',
+  author_email='thonny-py5mode@tabreturn.com',
+  license='WTFPL',
   classifiers=[
-    # complete classifier list: https://pypi.org/pypi?%3Aaction=list_classifiers
-    'Development Status :: 1 - Planning'
-  ]
+    # https://pypi.org/pypi?%3Aaction=list_classifiers
+    'Environment :: Plugins',
+    'Topic :: Multimedia :: Graphics',
+    'Topic :: Text Editors :: Integrated Development Environments (IDE)'
+  ],
+  packages=['thonnycontrib.thonny-py5mode'],
+  #install_requires=['install-jdk', 'py5']  # uncomment when the new py5 is released
+  install_requires=['install-jdk'], dependency_links=['https://github.com/hx2A/py5.git@0.5a1.dev0#egg=py5']  # comment when the new py5 is released
 )

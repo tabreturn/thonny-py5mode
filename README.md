@@ -1,8 +1,10 @@
-# thonny-py5-mode
+# thonny-py5mode
 
 *A py5 plugin for Thonny*
 
 This plugin is designed to work with the portable version of Thonny.
+
+**Development on this package has just begun; thonny-py5mode still its experimental stages**
 
 1. Download the *-alt* version of the Thonny IDE (for Python 3.9 support): https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-x86_64-alt.tar.gz
 
@@ -40,5 +42,3 @@ If you're interested in Python for creative coding, and don't know about [hx2A's
 
 - [x] get started
 - [ ] lots more ...
-
-
