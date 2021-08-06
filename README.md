@@ -21,6 +21,8 @@ This plugin is designed to work with the portable version of Thonny. It's also l
 6. Try out a sketch (note I haven't programmed 'imported mode' support yet):
 
 ```python
+import py5
+
 def setup():
     py5.size(200, 200)
     py5.rect_mode(py5.CENTER)
