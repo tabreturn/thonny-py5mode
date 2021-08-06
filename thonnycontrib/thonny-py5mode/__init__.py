@@ -31,11 +31,9 @@ def activate_py5():
     ''' get thonny (portable version) paths '''
 
     if os.environ['JAVA_HOME'].split('jdk-')[-1].split('.')[0] < 11:
-        thonny_interpreter = pathlib.Path(sys.executable)
-        thonny_root = pathlib.Path(thonny_interpreter).parents[1]
-        thonny_lib = thonny_root / 'lib'
+        thonny_root = sys.path[0]  # use THONNY_USER_DIR for non-portable
 
-        if not pathlib.Path(thonny_lib / 'jdk-11').exists():
+        if not pathlib.Path(thonny_root / 'jdk-11').exists():
             print('py5 requires jdk-11')
 
             def display_progress(task):
@@ -55,16 +53,14 @@ def activate_py5():
             jdk_file = jdk._download(jdk.get_download_url('11'))
             progress_complete = True
 
-            # extract jdk to thonny's thonny/lib/
+            # extract jdk to thonny's root
             print('> extracting jdk')
             jdk._USER_DIR = thonny_root
             jdk_ext = jdk._get_normalized_compressed_file_ext(jdk_file)
-            jdk_dir = jdk._decompress_archive(jdk_file, jdk_ext, thonny_lib)
+            jdk_dir = jdk._decompress_archive(jdk_file, jdk_ext, thonny_root)
             
-            # rename extracted jdk directory to thonny/lib/jdk-11
-            lib_path = pathlib.Path(thonny_lib)
-
-            for name in os.listdir(lib_path):
+            # rename extracted jdk directory to thonny/jdk-11
+            for name in os.listdir(thonny_root):
 
                 if name.startswith('jdk-11'):
                     os.rename(lib_path / name, lib_path / 'jdk-11')
@@ -82,7 +78,6 @@ _OPTION_NAME = 'run.py5_mode'
 
 
 def toggle_variable():
-    '''
     var = get_workbench().get_variable(_OPTION_NAME)
     var.set(not var.get())
     update_environment()
@@ -90,7 +85,6 @@ def toggle_variable():
     if var.get():
         # activate py5 (and download jdk if necessary) 
         showinfo(activate_py5(), 'py5 mode activated')
-    '''
 
 
 def update_environment():
