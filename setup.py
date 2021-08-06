@@ -5,9 +5,9 @@ README = (pathlib.Path(__file__).parent / 'README.md').read_text()
 
 setup(
   name='thonny-py5mode',
-  version='0.1.3-alpha',    
+  version='0.1.3-alpha',
   description='py5 mode plugin for Thonny',
-  long_description = README,
+  long_description=README,
   long_description_content_type='text/markdown',
   url='https://github.com/tabreturn/thonny-py5mode',
   author='tabreturn',
@@ -22,3 +22,4 @@ setup(
   packages=['thonnycontrib.thonny-py5mode'],
   install_requires=['install-jdk', 'py5']
 )
+
