@@ -8,7 +8,6 @@ py5 plugin for Thonny.
 * maybe look at how Run > Pygame Zero Mode is programmed?
 '''
 
-__version__ = "0.0.1"
 __author__ = 'tabreturn'
 __credits__ = 'organisation name'
 
