@@ -42,6 +42,8 @@ def activate_py5(install_type: str):
     # install to app directory if portable, config directory if non-portable
     install_to = sys.path[0] if install_type == 'portable' else THONNY_USER_DIR
 
+    showinfo('DL', 'dl', master=get_workbench())
+
     for name in os.listdir(install_to):
         # check for jdk directory thonny app / config directory
         if name.startswith(jdk_dir):
@@ -125,7 +127,11 @@ def toggle_variable(install_type: str) -> None:
     if var_portable.get() or var_installed.get():
         # activate py5 (and download jdk if necessary)
         activated_msg = 'py5 mode for %s Thonny activated' % install_type
-        showinfo(activate_py5(install_type), activated_msg)
+        showinfo(
+          activate_py5(install_type),
+          activated_msg,
+          master=get_workbench()
+        )
 
 
 def execute_module_mode() -> None:
@@ -139,7 +145,11 @@ def execute_module_mode() -> None:
 
     if current_file is None:
         # thonny must 'save as' any new files, before it can run them
-        showinfo('py5 module mode error', 'Save your file somewhere first')
+        showinfo(
+          'py5 module mode error',
+          'Save your file somewhere first',
+          master=get_workbench()
+        )
 
     elif current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
         # save and run py5 module mode
