@@ -107,17 +107,18 @@ Click OK to proceed
 
 _OPTION_PORTABLE = 'run.py5_mode_portable'
 _OPTION_INSTALLED = 'run.py5_mode_installed'
+var_portable = None
+var_installed = None
 # workaround for .add_command() handler parameter that won't accept arguments
 def toggle_variable_portable() -> None: toggle_variable('portable')
 def toggle_variable_installed() -> None: toggle_variable('installed')
 
 
-var_portable = get_workbench().get_variable(_OPTION_PORTABLE)
-var_installed = get_workbench().get_variable(_OPTION_INSTALLED)
-
-
 def toggle_variable(install_type: str) -> None:
     '''install_type is portable or installed'''
+    var_portable = get_workbench().get_variable(_OPTION_PORTABLE)
+    var_installed = get_workbench().get_variable(_OPTION_INSTALLED)
+
     if install_type == 'portable':
         var_installed.set(False)
         var_portable.set(not var_portable.get())
@@ -169,8 +170,6 @@ def execute_module_mode() -> None:
 
 def load_plugin() -> None:
     '''every thonny plug-in uses this function to load'''
-    var_installed.set(False)
-    var_portable.set(False)
     # portable button
     get_workbench().set_default(_OPTION_PORTABLE, False)
     get_workbench().add_command(
@@ -184,7 +183,7 @@ def load_plugin() -> None:
     # non-portable / installed button
     get_workbench().set_default(_OPTION_INSTALLED, False)
     get_workbench().add_command(
-      'toggle_py5_mode',
+      'toggle_py5_mode_installed',
       'py5',
       tr('py5 mode for installed Thonny'),
       toggle_variable_installed,
@@ -202,4 +201,3 @@ def load_plugin() -> None:
       extra_sequences=[select_sequence('<Control-Alt-u>', '<Command-u>')],
       group=200
     )
-
