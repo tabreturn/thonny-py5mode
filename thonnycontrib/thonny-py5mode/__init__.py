@@ -195,7 +195,7 @@ def load_plugin() -> None:
     get_workbench().add_command(
       'execute_module_mode',
       'py5',
-      'Execute using py5 module mode',
+      'Run imported mode sketch',
       execute_module_mode,
       default_sequence='<Control-u>',
       extra_sequences=[select_sequence('<Control-Alt-u>', '<Command-u>')],
