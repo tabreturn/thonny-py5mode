@@ -19,17 +19,21 @@ This plug-in will work with the portable version of Thonny. It's also likely to 
 3. In the newly-extracted thonny folder, locate and run `bin/thonny` (if you're running Thonny for the first time, just accept the default *Standard* settings).
 
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/03.01-extract-and-run.png)  
+---
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/03.02-splash.png)
 
 4. Once Thonny is open, select *Tools > Manage plugins...*, then search for and install __thonny-py5mode__ (note you'll need to restart Thonny after this step).
 
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.01-manage-plug-ins.png)  
+---
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.02-install-plug-in.png)
 
 5. When you've restarted Thonny, select *py5 > py5 mode for portable Thonny* (this'll download and extract JDK-11 into `thonny/jdk-11` and set `JAVA_HOME` to that path). **For a non-portable/installed version of Thonny**, use *py5 > py5 mode for installed Thonny* to install JDK-11 in the Thonny user-config directory (`~/.config/Thonny` on Linux). NOTE: Thonny will appear to freeze for a while as it carries out this task (the plug-in needs a proper progress indicator).
 
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.01-activate-py5-mode.png)  
+---
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.02-jdk-download.png)  
+---
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.03-jdk-ready.png)
 
 6. Try out an [imported mode](https://py5.ixora.io/tutorials/py5-modes/#module-mode) sketch using *py5 > Run imported mode sketch* (or using Ctrl+U).
