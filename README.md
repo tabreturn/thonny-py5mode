@@ -76,7 +76,7 @@ You may prefer your packages installed in the thonny app folder -- this is neat 
 
 The Thonny plug-in (and package) manager will install packages on Linux to `/home/user/.local/lib/`. To use your Thonny app folder instead, select *Tools > Open system shell...* -- this will open a terminal window with a list of `pip` commands. Use the one located in your thonny folder (see image below). In other words, enter `pip3 install thonny-py5mode` to install the plug-in.
 
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/terminal_pip.png)
+![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/terminal_pip.png)
 
 BUT: sometimes the terminal doesn't show the Thonny commands. In this case, you can open a terminal (from outside Thonny) and `cd` to your `thonny/bin` directory, then enter `./pip3 install thonny-py5mode` to use the pip version that targets the bundled Thonny interpreter.
 
