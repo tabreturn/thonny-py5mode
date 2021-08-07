@@ -42,8 +42,6 @@ def activate_py5(install_type: str):
     # install to app directory if portable, config directory if non-portable
     install_to = sys.path[0] if install_type == 'portable' else THONNY_USER_DIR
 
-    showinfo('DL', 'dl', master=get_workbench())
-
     for name in os.listdir(install_to):
         # check for jdk directory thonny app / config directory
         if name.startswith(jdk_dir):
@@ -51,6 +49,13 @@ def activate_py5(install_type: str):
 
     if no_jdk_dir or not system_jdk.isdigit() or int(system_jdk) < require_jdk:
         print('> py5 requires jdk-11')
+        install_msg = '''
+Thonny requires JDK to run py5 sketches. It\'ll need to download about 180 MB.
+
+Click OK to proceed
+(it may seem like this window is stuck, but JDK is downloading)
+'''
+        showinfo('JDK for py5', install_msg, master=get_workbench())
 
         for name in os.listdir(install_to):
             # delete existing *thonny-py5mode jdk*
@@ -68,8 +73,10 @@ def activate_py5(install_type: str):
 
         # download jdk
         progress_complete = False
-        msg = '> downloading jdk '
-        dl_thread = threading.Thread(target=display_progress, args=(msg,))
+        dl_thread = threading.Thread(
+          target=display_progress,
+          args=('> downloading jdk ',)
+        )
         dl_thread.start()
         jdk_file = jdk._download(jdk.get_download_url(require_jdk))
         progress_complete = True
@@ -87,6 +94,7 @@ def activate_py5(install_type: str):
                 dest = pathlib.Path(install_to) / jdk_dir
                 os.rename(src, dest)
                 print('> done!')
+                showinfo('', 'All done! py5 is ready.', master=get_workbench())
                 break
 
         set_java_home(pathlib.Path(install_to) / dest)
@@ -126,12 +134,7 @@ def toggle_variable(install_type: str) -> None:
 
     if var_portable.get() or var_installed.get():
         # activate py5 (and download jdk if necessary)
-        activated_msg = 'py5 mode for %s Thonny activated' % install_type
-        showinfo(
-          activate_py5(install_type),
-          activated_msg,
-          master=get_workbench()
-        )
+        activate_py5(install_type)
 
 
 def execute_module_mode() -> None:
