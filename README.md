@@ -2,23 +2,46 @@
 
 *A py5 plug-in for Thonny*
 
-This plugin is designed to work with the portable version of Thonny. It's also likely to work with those versions that include an installer.
+Use the [Thonny Python IDE](https://thonny.org/) as a Processing PDE alternative for creative coding. *Thonny-py5mode* is a plug-in that installs and configures Thonny for use with [py5](http://py5.ixora.io/), a Python (3.8+) framework that leverages Processing's core libraries.
 
-**Development on this package has just begun; thonny-py5mode is still in its experimental stages**. I've only tested this on Linux right now.
+This plug-in will work with the portable version of Thonny. It's also likely to work with Thonny versions that include an installer.
+
+**Development on this package has just begun; thonny-py5mode is still in its experimental stages**. It's only tested on Linux right now but will likely work fine on Windows. You should be aware that there are a few [py5 issues with Mac (OSX) computers](https://py5.ixora.io/tutorials/mac-users/).
 
 ## Instructions
 
 1. Download the *-alt* version of the Thonny IDE (for Python 3.9 support) from: https://github.com/thonny/thonny/releases/tag/v3.3.7 (grab *thonny-3.3.7-x86_64-alt.tar.gz* for Linux)
 
-2. Extract this archive and place the *thonny* folder wherever you like (this runs as a portable app, no installer required).
+![](01-download.png)
 
-3. In the thonny folder, locate and run `bin/thonny` (preferably from your terminal whenever you start Thonny, so you can see thonny-py5mode logging messages).
+2. Extract this archive and place the *thonny* folder wherever you like on your computer (this runs as a portable app, no installer required).
 
-4. Once Thonny is open, select *Tools > Manage plug-ins...*, then search for and install __thonny-py5mode__ (note you'll need to restart Thonny after this step).
+3. In the newly-extracted thonny folder, locate and run `bin/thonny` (if you're running Thonny for the first time, just accept the default *Standard* settings).
 
-5. Once you've restarted Thonny (from your terminal?), select *py5 > py5 mode for portable Thonny* (this'll download and extract JDK-11 into `thonny/jdk-11` and set `JAVA_HOME` to that path). **For a non-portable/installed version of Thonny**, use *py5 > py5 mode for installed Thonny*. NOTE: Thonny will appear to freeze for a while as it carries out this task (I need to add a proper progress indicator).
+![](03.01-extract-and-run.png)  
+![](03.02-splash.png)
 
-6. Try out a sketch (note I haven't programmed 'imported mode' support yet):
+4. Once Thonny is open, select *Tools > Manage plugins...*, then search for and install __thonny-py5mode__ (note you'll need to restart Thonny after this step).
+
+![](04.01-manage-plug-ins.png)  
+![](04.02-install-plug-in.png)
+
+5. When you've restarted Thonny, select *py5 > py5 mode for portable Thonny* (this'll download and extract JDK-11 into `thonny/jdk-11` and set `JAVA_HOME` to that path). **For a non-portable/installed version of Thonny**, use *py5 > py5 mode for installed Thonny* to install JDK-11 in the Thonny user-config directory (`~/.config/Thonny` on Linux). NOTE: Thonny will appear to freeze for a while as it carries out this task (the plug-in needs a proper progress indicator).
+
+![](05.01-activate-py5-mode.png)  
+![](05.02-jdk-download.png)  
+![](05.03-jdk-ready.png)
+
+6. Try out an [imported mode](https://py5.ixora.io/tutorials/py5-modes/#module-mode) sketch using *py5 > Run imported mode sketch* (or using Ctrl+U).
+
+![](06-run-imported-mode.png)
+
+NOTE: you'll need to save your sketch (*File > Save as...*) somewhere first. After that, Thonny saves the file for you each time you run the sketch.
+
+
+## Module Mode Sketches
+
+You can run a py5 [module mode](https://py5.ixora.io/tutorials/py5-modes/#module-mode) sketch using the standard Thonny run menu (*Run > Run current script*). As an example, you can try this code:
 
 ```python
 import py5
@@ -33,23 +56,31 @@ def draw():
 py5.run_sketch()
 ```
 
-I'm basically trying to automate this process:  
-https://tabreturn.github.io/code/python/thonny/2021/06/21/thonny_and_py5.html
+## Keeping Thonny Portable
 
-**You may prefer your packages installed in the thonny app folder -- this is neat because you end up with a portable version of Thonny that includes everything to run py5!** The Thonny plug-in (and package) manager will install packages to `/home/user/.local/lib/`. To use your Thonny app folder instead, use *Tools > Open system shell...* -- this will open a terminal window with a list of `pip` commands. Use the one located in your thonny folder (see image below). In other words, enter `pip3 install thonny-py5mode` to install the plugin.
+You may prefer your packages installed in the thonny app folder -- this is neat because you end up with a portable version of Thonny that includes everything to run py5!
+
+The Thonny plug-in (and package) manager will install packages on Linux to `/home/user/.local/lib/`. To use your Thonny app folder instead, select *Tools > Open system shell...* -- this will open a terminal window with a list of `pip` commands. Use the one located in your thonny folder (see image below). In other words, enter `pip3 install thonny-py5mode` to install the plug-in.
 
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/terminal_pip.png)
+
+BUT: sometimes the terminal doesn't show the Thonny commands. In this case, you can open a terminal (from outside Thonny) and `cd` to your `thonny/bin` directory, then enter `./pip3 install thonny-py5mode` to use the pip version that targets the bundled Thonny interpreter.
+
+
+## Credits
 
 I was inspired to get started on this by [villares' experiment](https://github.com/villares/thonny-py5-runner), and thonny-py5mode will likely end up integrated into this.
 
 If you're interested in Python for creative coding and don't know about [hx2A's](https://github.com/hx2A) py5 project, you need to check it out now!
 
-## todo list
+
+## Todo List
 
 - ~~Get started~~
 - ~~Add tickable/toggled menu option~~
 - ~~Add support for non-portable/installed version of Thonny~~
 - Display download/installation progress in Thonny (not the terminal)
-- Add support for [py5 imported mode](http://py5.ixora.io/tutorials/py5-modes/#imported-mode)
-- Buttons and indicators! How does one switch between (imported and other) modes using Thonny; how is this reflected in the interface?
+- ~~Add support for [py5 imported mode](http://py5.ixora.io/tutorials/py5-modes/#imported-mode)~~
+- Auto-completion for module mode
+- Highlighting for py5 code
 - ...
