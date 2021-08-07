@@ -34,6 +34,16 @@ This plug-in will work with the portable version of Thonny. It's also likely to 
 
 6. Try out an [imported mode](https://py5.ixora.io/tutorials/py5-modes/#module-mode) sketch using *py5 > Run imported mode sketch* (or using Ctrl+U).
 
+```python
+def setup():
+    size(500, 500)
+    fill(255, 0, 0)
+    no_stroke()
+
+def draw():
+    circle(mouse_x, mouse_y, 10)
+```
+
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06-run-imported-mode.png)
 
 NOTE: you'll need to save your sketch (*File > Save as...*) somewhere first. After that, Thonny saves the file for you each time you run the sketch.
