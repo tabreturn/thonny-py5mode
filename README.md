@@ -10,47 +10,42 @@ This plug-in will work with the portable version of Thonny. It's also likely to 
 
 ## Instructions
 
-1. Download the *-alt* version of the Thonny IDE (for Python 3.9 support) from: https://github.com/thonny/thonny/releases/tag/v3.3.7 (grab *thonny-3.3.7-x86_64-alt.tar.gz* for Linux)
-
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download.png)
+1. Download the *-alt* version of the Thonny IDE (for Python 3.9 support) from: https://github.com/thonny/thonny/releases/tag/v3.3.7 (grab *thonny-3.3.7-x86_64-alt.tar.gz* for Linux)  
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download.png)
 
 2. Extract this archive and place the *thonny* folder wherever you like on your computer (this runs as a portable app, no installer required).
 
-3. In the newly-extracted thonny folder, locate and run `bin/thonny` (if you're running Thonny for the first time, just accept the default *Standard* settings).
+3. In the newly-extracted thonny folder, locate and run `bin/thonny`.  
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/03.01-extract-and-run.png)  
+   If you're running Thonny for the first time, just accept the default *Standard* settings.  
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/03.02-splash.png)
 
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/03.01-extract-and-run.png)  
----
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/03.02-splash.png)
+4. Once Thonny is open, select *Tools > Manage plugins...*  
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.01-manage-plug-ins.png)  
+   Then search for and install __thonny-py5mode__ (note you'll need to restart Thonny after this step).  
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.02-install-plug-in.png)
 
-4. Once Thonny is open, select *Tools > Manage plugins...*, then search for and install __thonny-py5mode__ (note you'll need to restart Thonny after this step).
-
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.01-manage-plug-ins.png)  
----
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.02-install-plug-in.png)
-
-5. When you've restarted Thonny, select *py5 > py5 mode for portable Thonny* (this'll download and extract JDK-11 into `thonny/jdk-11` and set `JAVA_HOME` to that path). **For a non-portable/installed version of Thonny**, use *py5 > py5 mode for installed Thonny* to install JDK-11 in the Thonny user-config directory (`~/.config/Thonny` on Linux). NOTE: Thonny will appear to freeze for a while as it carries out this task (the plug-in needs a proper progress indicator).
-
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.01-activate-py5-mode.png)  
----
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.02-jdk-download.png)  
----
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.03-jdk-ready.png)
+5. When you've restarted Thonny, select *py5 > py5 mode for portable Thonny* (this'll download and extract JDK-11 into `thonny/jdk-11` and set `JAVA_HOME` to that path).  
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.01-activate-py5-mode.png)  
+   **For a non-portable/installed version of Thonny**, use *py5 > py5 mode for installed Thonny* to install JDK-11 in the Thonny user-config directory (`~/.config/Thonny` on Linux).  
+   NOTE: Thonny will appear to freeze for a while as it carries out this task (the plug-in needs a proper progress indicator) --
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.02-jdk-download.png)  
+   But, you'll be notified once it's done.
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.03-jdk-ready.png)
 
 6. Try out an [imported mode](https://py5.ixora.io/tutorials/py5-modes/#module-mode) sketch using *py5 > Run imported mode sketch* (or using Ctrl+U).
 
-```python
-def setup():
-    size(500, 500)
-    fill(255, 0, 0)
-    no_stroke()
-
-def draw():
-    circle(mouse_x, mouse_y, 10)
-```
-
-![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06-run-imported-mode.png)
-
-NOTE: you'll need to save your sketch (*File > Save as...*) somewhere first. After that, Thonny saves the file for you each time you run the sketch.
+   ```python
+   def setup():
+       size(500, 500)
+       fill(255, 0, 0)
+       no_stroke()
+   
+   def draw():
+   circle(mouse_x, mouse_y, 10)
+   ```
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06-run-imported-mode.png)  
+   NOTE: you'll need to save your sketch (*File > Save as...*) somewhere first. After that, Thonny saves the file for you each time you run the sketch.
 
 
 ## Module Mode Sketches
