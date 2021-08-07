@@ -10,6 +10,8 @@ This plug-in will work with the portable version of Thonny. It's also likely to 
 
 ## Instructions
 
+These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other platforms. Where applicable, there are notes for non-portable/installed versions of Thonny.
+
 1. Download the *-alt* version of the Thonny IDE (for Python 3.9 support) from: https://github.com/thonny/thonny/releases/tag/v3.3.7 (grab *thonny-3.3.7-x86_64-alt.tar.gz* for Linux)
    
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download.png)
@@ -57,6 +59,7 @@ This plug-in will work with the portable version of Thonny. It's also likely to 
    def draw():
    circle(mouse_x, mouse_y, 10)
    ```
+   
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06-run-imported-mode.png)
    
    NOTE: you'll need to save your sketch (*File > Save as...*) somewhere first. After that, Thonny saves the file for you each time you run the sketch.
