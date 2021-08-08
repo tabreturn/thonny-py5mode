@@ -159,7 +159,7 @@ def execute_module_mode() -> None:
         # save and run py5 module mode
         current_editor.save_file()
         run_sketch = '/py5_tools/tools/run_sketch.py'
-        run_sketch = str(site.getsitepackages()[0]) + run_sketch
+        run_sketch = pathlib.Path(str(site.getsitepackages()[0]) + run_sketch)
         working_directory = os.path.dirname(current_file)
         cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
         cmd_parts = ['%Run', run_sketch, current_file]
