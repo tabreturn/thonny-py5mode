@@ -39,7 +39,6 @@ REQUIRE_JDK = 11
 def activate_py5(install_type: str):
     '''get thonny (portable version) paths'''
     jdk_dir = 'jdk-' + str(REQUIRE_JDK)
-    no_jdk_dir = True
     system_jdk = 'TBD'
     # check system for jdk install (and version, if found)
     if os.environ.get('JAVA_HOME') is not None:
@@ -51,10 +50,12 @@ def activate_py5(install_type: str):
     for name in os.listdir(install_to):
         # check for jdk directory thonny app / config directory
         if name.startswith(jdk_dir):
-            no_jdk_dir = False
+            # set jdk path to thonny app / config directory
+            set_java_home(pathlib.Path(install_to) / jdk_dir)
+            return 'JAVA_HOME set'
 
-    if no_jdk_dir or not system_jdk.isdigit() or int(system_jdk) < REQUIRE_JDK:
-        print('> py5 requires jdk-' + str(REQUIRE_JDK))
+    if not system_jdk.isdigit() or int(system_jdk) < REQUIRE_JDK:
+        print('> py5 requires jdk-%d' % REQUIRE_JDK)
         install_msg = '''
 Thonny requires JDK to run py5 sketches. It\'ll need to download about 180 MB.
 
@@ -213,3 +214,4 @@ def load_plugin() -> None:
       extra_sequences=[select_sequence('<Control-Alt-u>', '<Command-u>')],
       group=200
     )
+
