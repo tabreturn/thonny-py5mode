@@ -34,9 +34,22 @@ These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other p
    
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.02-install-plug-in.png)
 
-5. When you've restarted Thonny, select *py5 > py5 mode for portable Thonny* (this'll download and extract JDK-11 into `thonny/jdk-11` and set `JAVA_HOME` to that path).
+5. When you've restarted Thonny, select *py5 > Activate py5 mode for Thonny* (this'll download and extract JDK-11 into the Thonny user-config directory (`~/.config/Thonny` on Linux).
    
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.01-activate-py5-mode.png)
+   
+   NOTE: Thonny will appear to freeze for a while as it carries out this task (the plug-in needs a proper progress indicator) --
+   
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.02-jdk-download.png)
+   
+   But, you'll be notified once it's done.
+   
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.03-jdk-ready.png)
+
+<!--
+5. When you've restarted Thonny, select *py5 > py5 mode for portable Thonny* (this'll download and extract JDK-11 into `thonny/jdk-11` and set `JAVA_HOME` to that path).
+   
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/portable-05.01-activate-py5-mode.png)
    
    **For a non-portable/installed version of Thonny**, use *py5 > py5 mode for installed Thonny* to install JDK-11 in the Thonny user-config directory (`~/.config/Thonny` on Linux).
    
@@ -47,6 +60,7 @@ These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other p
    But, you'll be notified once it's done.
    
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.03-jdk-ready.png)
+-->
 
 6. Try out an [imported mode](https://py5.ixora.io/tutorials/py5-modes/#module-mode) sketch using *py5 > Run imported mode sketch* (or using Ctrl+U).
 
@@ -60,7 +74,8 @@ These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other p
    circle(mouse_x, mouse_y, 10)
    ```
    
-   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06-run-imported-mode.png)
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/portable-06-run-imported-mode.png)
+   <!-- ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06-run-imported-mode.png) -->
    
    NOTE: you'll need to save your sketch (*File > Save as...*) somewhere first. After that, Thonny saves the file for you each time you run the sketch.
 
@@ -82,6 +97,7 @@ def draw():
 py5.run_sketch()
 ```
 
+<!--
 ## Keeping Thonny Portable
 
 You may prefer your packages installed in the thonny app folder -- this is neat because you end up with a portable version of Thonny that includes everything to run py5!
@@ -91,6 +107,7 @@ The Thonny plug-in (and package) manager will install packages on Linux to `/hom
 ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/terminal_pip.png)
 
 BUT: sometimes the terminal doesn't show the Thonny commands. In this case, you can open a terminal (from outside Thonny) and `cd` to your `thonny/bin` directory, then enter `./pip3 install thonny-py5mode` to use the pip version that targets the bundled Thonny interpreter.
+-->
 
 
 ## Credits
@@ -107,6 +124,7 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 - ~~Add support for non-portable/installed version of Thonny~~
 - Display download/installation progress in Thonny (not the terminal)
 - ~~Add support for [py5 imported mode](http://py5.ixora.io/tutorials/py5-modes/#imported-mode)~~
+- Fix portable mode
 - Auto-completion for module mode
 - Highlighting for py5 code
 - ...

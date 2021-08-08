@@ -181,6 +181,8 @@ def load_plugin() -> None:
     '''every thonny plug-in uses this function to load'''
     # portable button
     get_workbench().set_option('run.py5_mode_portable', False)
+    '''
+    FIX: jdk installs to wherever thonny is run *from* (not relatice to exec)
     get_workbench().add_command(
       'toggle_py5_mode_portable',
       'py5',
@@ -189,12 +191,13 @@ def load_plugin() -> None:
       flag_name='run.py5_mode_portable',
       group=100
     )
+    '''
     # non-portable / installed button
     get_workbench().set_option('run.py5_mode_installed', False)
     get_workbench().add_command(
       'toggle_py5_mode_installed',
       'py5',
-      tr('py5 mode for installed Thonny'),
+      tr('Activate py5 mode for Thonny'),#tr('py5 mode for installed Thonny'),
       toggle_variable_installed,
       flag_name='run.py5_mode_installed',
       group=100
