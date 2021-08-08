@@ -162,7 +162,7 @@ def execute_module_mode() -> None:
         run_sketch = pathlib.Path(str(site.getsitepackages()[0]) + run_sketch)
         working_directory = os.path.dirname(current_file)
         cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
-        cmd_parts = ['%Run', run_sketch, current_file]
+        cmd_parts = ['%Run', str(run_sketch), current_file]
         ed_token = [running.EDITOR_CONTENT_TOKEN]
         exe_cmd_line = running.construct_cmd_line(cmd_parts, ed_token) + '\n'
         running.get_shell().submit_magic_command(cd_cmd_line + exe_cmd_line)
