@@ -38,7 +38,9 @@ def activate_py5(install_type: str):
     require_jdk = 11
     jdk_dir = 'jdk-' + str(require_jdk)
     no_jdk_dir = True
-    system_jdk = os.environ['JAVA_HOME'].split('jdk-')[-1].split('.')[0]
+    # check system for jdk install (and version, if found)
+    if os.environ.get('JAVA_HOME') is not None:
+        system_jdk = os.environ['JAVA_HOME'].split('jdk-')[-1].split('.')[0]
     # install to app directory if portable, config directory if non-portable
     install_to = sys.path[0] if install_type == 'portable' else THONNY_USER_DIR
 
