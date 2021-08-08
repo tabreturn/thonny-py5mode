@@ -5,7 +5,7 @@ README = (pathlib.Path(__file__).parent / 'README.md').read_text()
 
 setup(
   name='thonny-py5mode',
-  version='0.1.10-alpha',
+  version='0.1.11-alpha',
   description='py5 mode plugin for Thonny',
   long_description=README,
   long_description_content_type='text/markdown',
