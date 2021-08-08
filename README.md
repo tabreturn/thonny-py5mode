@@ -10,7 +10,7 @@ This plug-in will work with the portable version of Thonny. It's also likely to 
 
 ## Instructions
 
-These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other platforms. Where applicable, there are notes for non-portable/installed versions of Thonny. You can skip straight to step 4 if you already have Thonny on your computer.
+These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other platforms. Where applicable, there are notes for non-portable/installed versions of Thonny. You can skip straight to step 4 if you already have some version of Thonny *that includes Python 3.8+* on your computer.
 
 1. Download the *-alt* version of the Thonny IDE (for Python 3.9 support) from: https://github.com/thonny/thonny/releases/tag/v3.3.7 (grab *thonny-3.3.7-x86_64-alt.tar.gz* for Linux)
    
