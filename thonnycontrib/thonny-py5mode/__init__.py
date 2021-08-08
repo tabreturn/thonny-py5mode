@@ -128,7 +128,14 @@ def execute_module_mode() -> None:
         # save and run py5 module mode
         current_editor.save_file()
         run_sketch = '/py5_tools/tools/run_sketch.py'
-        run_sketch = pathlib.Path(str(site.getsitepackages()[0]) + run_sketch)
+        user_packages = str(site.getusersitepackages())
+        site_packages = str(site.getsitepackages()[0])
+        # check for py5 run_sketch path
+        if pathlib.Path(user_packages + run_sketch).is_file():
+            run_sketch = pathlib.Path(user_packages + run_sketch)
+        elif pathlib.Path(site_packages + run_sketch).is_file():
+            run_sketch = pathlib.Path(site_packages + run_sketch)
+
         working_directory = os.path.dirname(current_file)
         cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
         cmd_parts = ['%Run', str(run_sketch), current_file]
@@ -189,7 +196,7 @@ def load_plugin() -> None:
       group=100
     )
     # run link
-    # NOTE: perhaps this should be a toggle that in-turn affects the thonny run?
+    # NOTE: perhaps this should be a toggle that in-turn affects thonny run?
     get_workbench().add_command(
       'execute_module_mode',
       'py5',
@@ -199,4 +206,3 @@ def load_plugin() -> None:
       extra_sequences=[select_sequence('<Control-Alt-u>', '<Command-u>')],
       group=200
     )
-
