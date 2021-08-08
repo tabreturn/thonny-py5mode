@@ -74,8 +74,8 @@ These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other p
    circle(mouse_x, mouse_y, 10)
    ```
    
-   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/portable-06-run-imported-mode.png)
-   <!-- ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06-run-imported-mode.png) -->
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06-run-imported-mode.png)
+   <!-- ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/portable-06-run-imported-mode.png) -->
    
    NOTE: you'll need to save your sketch (*File > Save as...*) somewhere first. After that, Thonny saves the file for you each time you run the sketch.
 
