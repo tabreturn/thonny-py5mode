@@ -105,39 +105,6 @@ Click OK to proceed
     return 'JAVA_HOME set'
 
 
-_OPTION_PORTABLE = 'run.py5_mode_portable'
-_OPTION_INSTALLED = 'run.py5_mode_installed'
-var_portable = None
-var_installed = None
-# workaround for .add_command() handler parameter that won't accept arguments
-def toggle_variable_portable() -> None: toggle_variable('portable')
-def toggle_variable_installed() -> None: toggle_variable('installed')
-
-
-def toggle_variable(install_type: str) -> None:
-    '''install_type is portable or installed'''
-    var_portable = get_workbench().get_variable(_OPTION_PORTABLE)
-    var_installed = get_workbench().get_variable(_OPTION_INSTALLED)
-
-    if install_type == 'portable':
-        var_installed.set(False)
-        var_portable.set(not var_portable.get())
-
-    if install_type == 'installed':
-        var_portable.set(False)
-        var_installed.set(not var_installed.get())
-
-    # NOTE: don't know what this is for
-    # if get_workbench().in_simple_mode():
-    #     os.environ['PY5_MODE'] = 'auto'
-    # else:
-    #     os.environ['PY5_MODE'] = str(get_workbench().get_option(_OPTION_...))
-
-    if var_portable.get() or var_installed.get():
-        # activate py5 (and download jdk if necessary)
-        activate_py5(install_type)
-
-
 def execute_module_mode() -> None:
     '''
     there's got to be a better approach than this ...
@@ -168,30 +135,59 @@ def execute_module_mode() -> None:
         running.get_shell().submit_magic_command(cd_cmd_line + exe_cmd_line)
 
 
+# workaround for .add_command() handler parameter that won't accept arguments
+def toggle_variable_portable() -> None: toggle_variable('portable')
+def toggle_variable_installed() -> None: toggle_variable('installed')
+
+
+def toggle_variable(install_type: str) -> None:
+    '''install_type is portable or installed'''
+    var_portable = get_workbench().get_variable('run.py5_mode_portable')
+    var_installed = get_workbench().get_variable('run.py5_mode_installed')
+
+    if install_type == 'portable':
+        var_installed.set(False)
+        var_portable.set(not var_portable.get())
+
+    if install_type == 'installed':
+        var_portable.set(False)
+        var_installed.set(not var_installed.get())
+
+    # NOTE: don't know what this is for
+    # if get_workbench().in_simple_mode():
+    #     os.environ['PY5_MODE'] = 'auto'
+    # else:
+    #     os.environ['PY5_MODE'] = str(get_workbench().get_option(_OPTION_...))
+
+    if var_portable.get() or var_installed.get():
+        # activate py5 (and download jdk if necessary)
+        activate_py5(install_type)
+
+
 def load_plugin() -> None:
     '''every thonny plug-in uses this function to load'''
     # portable button
-    get_workbench().set_default(_OPTION_PORTABLE, False)
+    get_workbench().set_option('run.py5_mode_portable', False)
     get_workbench().add_command(
       'toggle_py5_mode_portable',
       'py5',
       tr('py5 mode for portable Thonny'),
       toggle_variable_portable,
-      flag_name=_OPTION_PORTABLE,
+      flag_name='run.py5_mode_portable',
       group=100
     )
     # non-portable / installed button
-    get_workbench().set_default(_OPTION_INSTALLED, False)
+    get_workbench().set_option('run.py5_mode_installed', False)
     get_workbench().add_command(
       'toggle_py5_mode_installed',
       'py5',
       tr('py5 mode for installed Thonny'),
       toggle_variable_installed,
-      flag_name=_OPTION_INSTALLED,
+      flag_name='run.py5_mode_installed',
       group=100
     )
     # run link
-    # NOTE: perhaps this should be a toggle that in-turn affects the thonny run
+    # NOTE: perhaps this should be a toggle that in-turn affects the thonny run?
     get_workbench().add_command(
       'execute_module_mode',
       'py5',
@@ -201,3 +197,4 @@ def load_plugin() -> None:
       extra_sequences=[select_sequence('<Control-Alt-u>', '<Command-u>')],
       group=200
     )
+
