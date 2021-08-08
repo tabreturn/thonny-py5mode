@@ -54,7 +54,7 @@ def activate_py5(install_type: str):
             no_jdk_dir = False
 
     if no_jdk_dir or not system_jdk.isdigit() or int(system_jdk) < REQUIRE_JDK:
-        print('> py5 requires jdk-' + REQUIRE_JDK)
+        print('> py5 requires jdk-' + str(REQUIRE_JDK))
         install_msg = '''
 Thonny requires JDK to run py5 sketches. It\'ll need to download about 180 MB.
 
