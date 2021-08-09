@@ -16,6 +16,7 @@ import site
 import sys
 import threading
 import time
+from distutils.sysconfig import get_python_lib
 from tkinter.messagebox import showinfo
 import jdk
 from py5_tools import imported
@@ -140,6 +141,8 @@ def execute_module_mode() -> None:
             run_sketch = pathlib.Path(user_packages + run_sketch)
         elif pathlib.Path(site_packages + run_sketch).is_file():
             run_sketch = pathlib.Path(site_packages + run_sketch)
+        else:
+            run_sketch = pathlib.Path(get_python_lib() + run_sketch)
 
         working_directory = os.path.dirname(current_file)
         cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
