@@ -34,7 +34,7 @@ These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other p
    
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.02-install-plug-in.png)
 
-5. When you've restarted Thonny, select *py5 > Activate py5 mode for Thonny* -- this will download and extract JDK-11 into the Thonny user-config directory (`~/.config/Thonny` on Linux). You'll have to activate this mode when you want to use py5 (but the download only happens on the first occasion).
+5. When you've restarted Thonny, select *py5 > Activate py5 mode for Thonny* -- this will download, extract and setup JDK-11 for you (if you need to know: it's in the Thonny user-config directory, `~/.config/Thonny` on Linux). You'll have to activate this mode when you want to use py5 (but the download only happens on the first occasion).
    
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05.01-activate-py5-mode.png)
    
@@ -82,7 +82,7 @@ These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other p
 
 ## Module Mode Sketches
 
-You can run a py5 [module mode](https://py5.ixora.io/tutorials/py5-modes/#module-mode) sketch using the standard Thonny run menu (*Run > Run current script*). Be sure to *py5 > Activate py5 mode for Thonny* (this should be checked). As an example, you can try this code:
+You can run a py5 [module mode](https://py5.ixora.io/tutorials/py5-modes/#module-mode) sketch using the standard Thonny run menu (*Run > Run current script*). Be sure to select *py5 > Activate py5 mode for Thonny* first (this should be checked to run py5). As an example, you can try this code:
 
 ```python
 import py5
