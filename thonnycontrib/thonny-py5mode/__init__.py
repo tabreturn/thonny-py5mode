@@ -19,7 +19,6 @@ import time
 from distutils.sysconfig import get_python_lib
 from tkinter.messagebox import showinfo
 import jdk
-from py5_tools import imported
 from thonny.languages import tr
 from thonny import get_workbench, THONNY_USER_DIR
 from thonny import running
