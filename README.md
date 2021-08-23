@@ -6,7 +6,7 @@ Use the [Thonny Python IDE](https://thonny.org/) as a Processing PDE alternative
 
 This plug-in will work with the portable version of Thonny. It's also likely to work with Thonny versions that include an installer.
 
-**Development on this package has just begun; thonny-py5mode is still in its experimental stages**. It's only tested on Linux right now; it *might* work on Windows. You should be aware that there are a few [py5 issues with Mac (OSX) computers](https://py5.ixora.io/tutorials/mac-users/).
+**Development on this package has just begun; thonny-py5mode is still in its experimental stages**. It's only tested on Linux right now; it *should* work on Windows. You should be aware that there are a few [py5 issues with Mac (OSX) computers](https://py5.ixora.io/tutorials/mac-users/).
 
 ## Instructions
 
