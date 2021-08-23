@@ -8,6 +8,9 @@ This plug-in will work with the portable version of Thonny. It's also likely to 
 
 **Development on this package has just begun; thonny-py5mode is still in its experimental stages**. It's only tested on Linux right now; it *should* work on Windows. You should be aware that there are a few [py5 issues with Mac (OSX) computers](https://py5.ixora.io/tutorials/mac-users/).
 
+For more on writing py5 code using this plug-in, [check out my CC Fest presentation](https://github.com/tabreturn/cc-fest-py5) on the topic.
+
+
 ## Instructions
 
 These are instructions for Linux. You'll need to adapt steps 1, 2, 3 for other platforms. Where applicable, there are notes for non-portable/installed versions of Thonny. You can skip straight to step 4 if you already have some version of Thonny *that includes Python 3.8+* on your computer.
