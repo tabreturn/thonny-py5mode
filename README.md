@@ -130,4 +130,5 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 - Fix portable mode
 - Auto-completion for module mode
 - Highlighting for py5 code
+- Add vpype tools?
 - ...
