@@ -122,13 +122,16 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 
 ## Todo List
 
-- ~~Get started~~
-- ~~Add tickable/toggled menu option~~
-- ~~Add support for non-portable/installed version of Thonny~~
+- Integrate alpha version py5 (and JDK) installer
 - Display download/installation progress in Thonny (not the terminal)
-- ~~Add support for [py5 imported mode](http://py5.ixora.io/tutorials/py5-modes/#imported-mode)~~
-- Fix portable mode
-- Auto-completion for module mode
+- ~~Support for non-portable/installed Thonny~~
+- Support for portable Thonny
+- Module mode auto-completion
+- Module mode Syntax highlighting -- site-packages/thonny/token_utils.ini > `import py5; _builtinlist += dir(py5)`
 - Highlighting for py5 code
-- Add vpype tools?
+- Theme for UI
+- Theme for syntax
+- Clean up and style -- py3clean, pycodestyle
+- Update instructions/readme
 - ...
+
