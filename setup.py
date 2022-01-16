@@ -5,7 +5,7 @@ README = (pathlib.Path(__file__).parent / 'README.md').read_text()
 
 setup(
   name='thonny-py5mode',
-  version='0.1.15-alpha',
+  version='0.2.0-beta',
   description='py5 mode plugin for Thonny',
   long_description=README,
   long_description_content_type='text/markdown',
@@ -19,6 +19,10 @@ setup(
     'Topic :: Multimedia :: Graphics',
     'Topic :: Text Editors :: Integrated Development Environments (IDE)'
   ],
-  packages=['thonnycontrib.thonny-py5mode'],
+  packages=[
+    'thonnycontrib.backend',
+    'thonnycontrib.kyanite',
+    'thonnycontrib.thonny-py5mode'
+  ],
   install_requires=['install-jdk', 'py5']
 )
