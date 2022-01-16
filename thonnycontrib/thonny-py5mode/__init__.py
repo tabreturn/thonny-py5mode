@@ -24,9 +24,10 @@ def set_jdk_path():
 def py5_config() -> None:
     set_jdk_path()
     # ADDITIONAL RECOMMENDED SETTINGS
-    get_workbench().set_option('view.ui_theme', 'Clean Dark Blue')
-    get_workbench().set_option('view.syntax_theme', 'Tomorrow')
+    get_workbench().set_option('view.ui_theme', 'Kyanite UI')
+    get_workbench().set_option('view.syntax_theme', 'Kyanite Syntax')
     get_workbench().set_option('assistance.open_assistant_on_errors', 'False')
+    get_workbench().reload_themes()
     update_environment()
 
 
