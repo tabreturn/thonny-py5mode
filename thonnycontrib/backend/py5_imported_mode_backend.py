@@ -3,9 +3,6 @@ import os
 import sys
 
 from thonny.plugins.cpython.cpython_backend import get_backend, MainCPythonBackend
-
-
-
 from py5_tools import *
 
 

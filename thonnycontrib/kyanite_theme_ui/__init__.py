@@ -1,4 +1,4 @@
-# theme based on Processing 4.0b3 default theme, Kyanite
+# UI theme based on Processing 4.0b3 default theme, Kyanite
 
 from thonny import get_workbench
 from thonny.workbench import UiThemeSettings
