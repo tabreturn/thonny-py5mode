@@ -124,6 +124,7 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 
 - Integrate alpha version py5 (and JDK) installer
 - Display download/installation progress in Thonny (not the terminal)
+- Restorable Thonny settings -- restore applied py5 config (themes, etc.) on deactivate
 - ~~Support for non-portable/installed Thonny~~
 - Support for portable Thonny
 - Module mode auto-completion
@@ -134,4 +135,5 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 - Clean up and style -- py3clean, pycodestyle
 - Update instructions/readme
 - ...
+
 
