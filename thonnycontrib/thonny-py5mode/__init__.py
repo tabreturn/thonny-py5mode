@@ -6,39 +6,31 @@ from thonny.languages import tr
 _OPTION_NAME = 'run.py5_imported_mode'
 
 
-def patched_editor_autocomplete(self, cmd):
-    # Make extra builtins visible for Jedi
-    prefix = "from py5 import *\n"
-    cmd["source"] = prefix + cmd["source"]
-    cmd["row"] = cmd["row"] + 1
-    result = get_backend()._original_editor_autocomplete(cmd)
-    result["row"] = result["row"] - 1
-    result["source"] = result["source"][len(prefix) :]
-    return result
-
-
-def toggle_variable() -> None:
+def toggle_variable():
     var = get_workbench().get_variable(_OPTION_NAME)
     var.set(not var.get())
-
     update_environment()
 
 
-def py5_config() -> None:
-    env_vars = get_workbench().get_option('general.environment')
-    # MAKE JDK PATH DYNAMIC
+def set_jdk_path():
+    # THIS SHOULD HAPPEN WHEN JDK IS INSTALLED
+    # MAKE JDK PATH DYNAMIC --
     jdk_path = 'JAVA_HOME=/home/nuc/.config/Thonny/jdk-11/'
+    env_vars = get_workbench().get_option('general.environment')
     if jdk_path not in env_vars:
         env_vars.append(jdk_path)
-    get_workbench().set_option('general.environment', env_vars)
+
+
+def py5_config() -> None:
+    set_jdk_path()
+    # ADDITIONAL RECOMMENDED SETTINGS
     get_workbench().set_option('view.ui_theme', 'Clean Dark Blue')
     get_workbench().set_option('view.syntax_theme', 'Tomorrow')
-    #get_workbench().set_option('run.program_arguments', 'py5_imported_mode')
     get_workbench().set_option('assistance.open_assistant_on_errors', 'False')
     update_environment()
 
 
-def update_environment() -> None:
+def update_environment():
     if get_workbench().in_simple_mode():
         os.environ['PY5_IMPORTED_MODE'] = 'auto'
     else:
@@ -63,4 +55,3 @@ def load_plugin() -> None:
         group=10,
     )
     update_environment()
-
