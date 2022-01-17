@@ -1,3 +1,7 @@
+'''thonny-py5mode frontend
+   interacts with thonny-py5mode backend (backend > py5_imported_mode_backend.py)
+'''
+
 import os
 
 from thonny import get_workbench
@@ -11,8 +15,8 @@ def update_environment() -> None:
     if get_workbench().in_simple_mode():
         os.environ['PY5_IMPORTED_MODE'] = 'auto'
     else:
-        pim = str(get_workbench().get_option(_PY5_IMPORTED_MODE))
-        os.environ['PY5_IMPORTED_MODE'] = pim
+        p_i_m = str(get_workbench().get_option(_PY5_IMPORTED_MODE))
+        os.environ['PY5_IMPORTED_MODE'] = p_i_m
 
 
 def toggle_variable() -> None:
