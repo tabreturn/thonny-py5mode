@@ -4,6 +4,7 @@
 
 import ast
 import os
+import sys
 
 from py5_tools import imported
 from thonny.common import InlineResponse
@@ -26,8 +27,9 @@ def augment_ast(root) -> None:
             print('py5 package not found')
         return
 
-    # use py5_tools run_sketch
-    imported.run_code('/home/nuc/Desktop/a.py')  # FIX THIS <---
+    # execute script
+    current_file = os.path.join(sys.path[0], sys.argv[0])
+    imported.run_code(current_file)
 
 
 def patched_editor_autocomplete(self, cmd) -> InlineResponse:
@@ -47,6 +49,6 @@ def load_plugin() -> None:
         return
 
     get_backend().add_ast_postprocessor(augment_ast)
-    cea = MainCPythonBackend._cmd_editor_autocomplete
-    MainCPythonBackend._original_editor_autocomplete = cea
+    c_e_a = MainCPythonBackend._cmd_editor_autocomplete
+    MainCPythonBackend._original_editor_autocomplete = c_e_a
     MainCPythonBackend._cmd_editor_autocomplete = patched_editor_autocomplete
