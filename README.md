@@ -130,8 +130,8 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 - Module mode auto-completion
 - Module mode Syntax highlighting -- site-packages/thonny/token_utils.ini > `import py5; _builtinlist += dir(py5)`
 - Highlighting for py5 code
-- Theme for UI
-- Theme for syntax
+- ~~Theme for UI~~
+- ~~Theme for syntax~~
 - Clean up and style -- py3clean, pycodestyle
 - Update instructions/readme
 - ...

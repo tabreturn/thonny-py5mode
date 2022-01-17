@@ -48,18 +48,18 @@ def apply_recommended_py5_config() -> None:  # ADD A RESTORE (TO EARLIER SETTING
 def load_plugin() -> None:
     get_workbench().set_default(_PY5_IMPORTED_MODE, False)
     get_workbench().add_command(
-        'toggle_py5_imported_mode',
-        'py5',
-        tr('py5 imported mode'),
-        toggle_variable,
-        flag_name=_PY5_IMPORTED_MODE,
-        group=10,
+      'toggle_py5_imported_mode',
+      'py5',
+      tr('py5 imported mode'),
+      toggle_variable,
+      flag_name=_PY5_IMPORTED_MODE,
+      group=10,
     )
     get_workbench().add_command(
-        'apply_recommended_py5_config',
-        'py5',
-        tr('apply recommended py5 settings'),
-        apply_recommended_py5_config,
-        group=20,
+      'apply_recommended_py5_config',
+      'py5',
+      tr('apply recommended py5 settings'),
+      apply_recommended_py5_config,
+      group=20,
     )
     update_environment()
