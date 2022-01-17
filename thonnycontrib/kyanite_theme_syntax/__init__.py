@@ -2,11 +2,10 @@
    theme inspired by processing 4.0b3 default theme, kyanite
 '''
 
-from thonny import get_workbench
-from thonny.workbench import SyntaxThemeSettings
+from thonny import get_workbench, workbench
 
 
-def kyanite_syntax() -> SyntaxThemeSettings:
+def kyanite_syntax() -> workbench.SyntaxThemeSettings:
     '''based on default_light (see thonny > plugins > base_syntax_themes)'''
     default_fg = '#111155'
     default_bg = '#FFFFF2'

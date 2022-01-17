@@ -14,7 +14,7 @@ from thonny.plugins.cpython.cpython_backend import (
 )
 
 
-def augment_ast(root) -> None:
+def augment_ast(root: ast.Module) -> None:
     '''augment run button for thonny imported mode'''
     mode = os.environ.get('PY5_IMPORTED_MODE', 'False')
     assert mode != 'False'
