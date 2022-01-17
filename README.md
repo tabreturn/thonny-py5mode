@@ -122,7 +122,7 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 
 ## Todo List
 
-- Integrate alpha version py5 (and JDK) installer
+- ~~Integrate alpha version py5 (and JDK) installer~~
 - Display download/installation progress in Thonny (not the terminal)
 - Restorable Thonny settings -- restore applied py5 config (themes, etc.) on deactivate
 - ~~Support for non-portable/installed Thonny~~
@@ -132,6 +132,7 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 - Highlighting for py5 code
 - ~~Theme for UI~~
 - ~~Theme for syntax~~
+- Add restore (to earlier config) to apply_recommended_py5_config()
 - Clean up and style -- py3clean, pycodestyle
 - Update instructions/readme
 - ...

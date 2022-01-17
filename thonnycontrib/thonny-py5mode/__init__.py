@@ -1,5 +1,5 @@
 '''thonny-py5mode frontend
-   interacts with thonny-py5mode backend (backend > py5_imported_mode_backend.py)
+   interacts with py5mode backend (backend > py5_imported_mode_backend.py)
 '''
 
 import os
@@ -69,8 +69,8 @@ def install_jdk() -> None:
         # download jdk
         progress_complete = False
         dl_thread = threading.Thread(
-          target = display_progress,
-          args = ('> downloading jdk ',)
+          target=display_progress,
+          args=('> downloading jdk ',)
         )
         dl_thread.start()
         jdk_file = jdk._download(jdk.get_download_url(_REQUIRE_JDK))
@@ -118,7 +118,7 @@ def activate_py5_imported_mode() -> None:
     set_py5_imported_mode()
 
 
-def apply_recommended_py5_config() -> None:  # ADD A RESTORE (TO EARLIER SETTINGS) FEATURE <---
+def apply_recommended_py5_config() -> None:
     '''apply some recommended settings for thonny py5 work'''
     get_workbench().set_option('view.ui_theme', 'Kyanite UI')
     get_workbench().set_option('view.syntax_theme', 'Kyanite Syntax')
