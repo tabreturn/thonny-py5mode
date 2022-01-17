@@ -1,7 +1,9 @@
-# UI theme based on Processing 4.0b3 default theme, Kyanite
+'''kyanite ui theme
+   theme based on processing 4.0b3 default theme, kyanite
+'''
 
 from thonny import get_workbench
-from thonny.workbench import UiThemeSettings
+#from thonny.workbench import UiThemeSettings  # IS THIS NECESSARY? <---
 from thonny.plugins.clean_ui_themes import clean
 
 
@@ -21,6 +23,3 @@ def load_plugin() -> None:
             custom_menubar=0,
         ),
     )
-
-    print('KYANITE UI LOADED .....................................')
-

@@ -1,10 +1,13 @@
-# Syntax theme based on Processing 4.0b3 default theme, Kyanite
+'''kyanite syntax theme
+   theme based on processing 4.0b3 default theme, kyanite
+'''
 
 from thonny import get_workbench
 from thonny.workbench import SyntaxThemeSettings
 
 
 def kyanite_syntax() -> SyntaxThemeSettings:
+    '''based on default_light (see thonny > plugins > base_syntax_themes)'''
     default_fg = "#FF0000"
     default_bg = "#00FF00"
     light_fg = "#00FFFF"
@@ -128,4 +131,3 @@ def kyanite_syntax() -> SyntaxThemeSettings:
 
 def load_plugin() -> None:
     get_workbench().add_syntax_theme('Kyanite Syntax', None, kyanite_syntax)
-
