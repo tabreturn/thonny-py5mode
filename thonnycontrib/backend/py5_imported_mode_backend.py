@@ -7,7 +7,7 @@ import os
 import sys
 
 from py5_tools import imported
-from thonny.common import InlineResponse
+from thonny.common import InlineCommand, InlineResponse
 from thonny.plugins.cpython.cpython_backend import (
   get_backend,
   MainCPythonBackend
@@ -32,7 +32,8 @@ def augment_ast(root: ast.Module) -> None:
     imported.run_code(current_file)
 
 
-def patched_editor_autocomplete(self, cmd) -> InlineResponse:
+def patched_editor_autocomplete(
+      self: MainCPythonBackend, cmd: InlineCommand) -> InlineResponse:
     '''add py5 to autocompletion'''
     prefix = 'from py5 import *\n'
     cmd['source'] = prefix + cmd['source']
