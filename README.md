@@ -128,10 +128,10 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 - ~~Support for non-portable/installed Thonny~~
 - Support for portable Thonny
 - ~~Imported mode auto-completion~~
-- Imported mode Syntax highlighting -- site-packages/thonny/token_utils.ini > `import py5; _builtinlist += dir(py5)`
-- ~~Processing inspired editor theme~~
-- ~~Theme for UI~~
-- ~~Theme for syntax~~
+- ~~Processing inspired theme for UI~~
+- ~~Processing inspired theme for syntax~~
+- ~~Imported mode Syntax highlighting~~
+- Pop-up built-in save dialog for new unsaved files
 - Update instructions/readme
 - ...
 

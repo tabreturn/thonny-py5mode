@@ -2,17 +2,20 @@
    interacts with py5mode backend (backend > py5_imported_mode_backend.py)
 '''
 
-import os
+import builtins
 import jdk
+import keyword
+import os
 import pathlib
-import site
+import py5
 import shutil
+import site
 import threading
 import time
-from thonny import get_workbench, THONNY_USER_DIR, running
+from thonny import get_workbench, running, THONNY_USER_DIR, token_utils
 from thonny.languages import tr
-from tkinter.messagebox import showinfo
 from thonny.running import Runner
+from tkinter.messagebox import showinfo
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 _REQUIRE_JDK = 11
@@ -152,6 +155,14 @@ def patched_execute_current(self: Runner, command_name: str) -> None:
     execute_imported_mode()
 
 
+def patch_token_coloring() -> None:
+    '''add py5 keywords to syntax highlighting'''
+    patched_builtinlist = token_utils._builtinlist + dir(py5)
+    matches = token_utils.matches_any('builtin', patched_builtinlist)
+    patched_BUILTIN = r'([^.\'"\\#]\b|^)' + (matches + r'\b')
+    token_utils.BUILTIN = patched_BUILTIN
+
+
 def set_py5_imported_mode() -> None:
     '''set imported mode variable in thonny configuration.ini file'''
     if get_workbench().in_simple_mode():
@@ -160,22 +171,27 @@ def set_py5_imported_mode() -> None:
         p_i_m = str(get_workbench().get_option(_PY5_IMPORTED_MODE))
         os.environ['PY5_IMPORTED_MODE'] = p_i_m
 
+        # switch on/off py5 run button behavior
+        if get_workbench().get_option(_PY5_IMPORTED_MODE):
+            Runner._original_execute_current = Runner.execute_current
+            Runner.execute_current = patched_execute_current
+
+            patched_builtinlist = token_utils._builtinlist + dir(py5)
+            matches = token_utils.matches_any('builtin', patched_builtinlist) + r'\b'
+            BUILTIN = r'([^.\'"\\#]\b|^)' + matches
+            token_utils.BUILTIN = BUILTIN
+        else:
+            try:
+                Runner.execute_current = Runner._original_execute_current
+            except Exception:
+                pass
+
 
 def toggle_py5_imported_mode() -> None:
     '''toggle py5 imported mode settings'''
     var = get_workbench().get_variable(_PY5_IMPORTED_MODE)
     var.set(not var.get())
     install_jdk()
-    # switch on/off py5 run button behavior
-    if get_workbench().get_option(_PY5_IMPORTED_MODE):
-        Runner._original_execute_current = Runner.execute_current
-        Runner.execute_current = patched_execute_current
-    else:
-        try:
-            Runner.execute_current = Runner._original_execute_current
-        except Exception:
-            pass
-
     set_py5_imported_mode()
 
 
@@ -196,4 +212,5 @@ def load_plugin() -> None:
       apply_recommended_py5_config,
       group=20,
     )
+    patch_token_coloring()
     set_py5_imported_mode()
