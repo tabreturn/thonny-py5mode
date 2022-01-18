@@ -5,18 +5,20 @@
 import os
 import jdk
 import pathlib
+import site
 import shutil
 import threading
 import time
-from thonny import get_workbench, THONNY_USER_DIR
+from thonny import get_workbench, THONNY_USER_DIR, running
 from thonny.languages import tr
 from tkinter.messagebox import showinfo
+from thonny.running import Runner
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 _REQUIRE_JDK = 11
 _INSTALL_JDK_MESSAGE = '''
 Thonny requires JDK to run py5 sketches. It\'ll need to download about 180 MB.
-Click OK to proceed
+Click OK to proceed. Restart Thonny once it's done.
 (it may seem like this window is stuck, but JDK is downloading)
 '''
 
@@ -57,7 +59,7 @@ def install_jdk() -> None:
             if name.startswith(jdk_dir):
                 shutil.rmtree(pathlib.Path(install_to) / name)
 
-        def display_progress(task: str):
+        def display_progress(task: str) -> None:
             '''progress indicator for downloading jdk'''
             print(task)
             progress = '·'
@@ -100,24 +102,6 @@ def install_jdk() -> None:
     return 'JAVA_HOME set'
 
 
-def set_py5_imported_mode() -> None:
-    '''set variable to switch on/off py5 run button behavior'''
-    if get_workbench().in_simple_mode():
-        os.environ['PY5_IMPORTED_MODE'] = 'auto'
-    else:
-        p_i_m = str(get_workbench().get_option(_PY5_IMPORTED_MODE))
-        os.environ['PY5_IMPORTED_MODE'] = p_i_m
-
-
-def activate_py5_imported_mode() -> None:
-    '''activate py5 imported mode settings'''
-    var = get_workbench().get_variable(_PY5_IMPORTED_MODE)
-    # toggle variable (and menu checkbox)
-    var.set(not var.get())
-    install_jdk()
-    set_py5_imported_mode()
-
-
 def apply_recommended_py5_config() -> None:
     '''apply some recommended settings for thonny py5 work'''
     get_workbench().set_option('view.ui_theme', 'Kyanite UI')
@@ -126,13 +110,80 @@ def apply_recommended_py5_config() -> None:
     get_workbench().reload_themes()
 
 
+def execute_imported_mode() -> None:
+    '''run imported mode script using py5_tools run_sketch'''
+    current_editor = get_workbench().get_editor_notebook().get_current_editor()
+    current_file = current_editor.get_filename()
+
+    if current_file is None:
+        # thonny must 'save as' any new files, before it can run them
+        showinfo(
+          'py5 module mode error',
+          'Save your file somewhere first',
+          master=get_workbench()
+        )
+
+    elif current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
+        # save and run py5 module mode
+        current_editor.save_file()
+        run_sketch = '/py5_tools/tools/run_sketch.py'
+        user_packages = str(site.getusersitepackages())
+        site_packages = str(site.getsitepackages()[0])
+        # check for py5 run_sketch path
+        if pathlib.Path(user_packages + run_sketch).is_file():
+            run_sketch = pathlib.Path(user_packages + run_sketch)
+        elif pathlib.Path(site_packages + run_sketch).is_file():
+            run_sketch = pathlib.Path(site_packages + run_sketch)
+        else:
+            run_sketch = pathlib.Path(get_python_lib() + run_sketch)
+
+        working_directory = os.path.dirname(current_file)
+        cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
+        cmd_parts = ['%Run', str(run_sketch), current_file]
+        ed_token = [running.EDITOR_CONTENT_TOKEN]
+        exe_cmd_line = running.construct_cmd_line(cmd_parts, ed_token) + '\n'
+        running.get_shell().submit_magic_command(cd_cmd_line + exe_cmd_line)
+
+
+def patched_execute_current(self: Runner, command_name: str) -> None:
+    '''override run button behavior for py5 imported mode'''
+    execute_imported_mode()
+
+
+def set_py5_imported_mode() -> None:
+    '''set imported mode variable in thonny configuration.ini file'''
+    if get_workbench().in_simple_mode():
+        os.environ['PY5_IMPORTED_MODE'] = 'auto'
+    else:
+        p_i_m = str(get_workbench().get_option(_PY5_IMPORTED_MODE))
+        os.environ['PY5_IMPORTED_MODE'] = p_i_m
+
+
+def toggle_py5_imported_mode() -> None:
+    '''toggle py5 imported mode settings'''
+    var = get_workbench().get_variable(_PY5_IMPORTED_MODE)
+    var.set(not var.get())
+    install_jdk()
+    # switch on/off py5 run button behavior
+    if get_workbench().get_option(_PY5_IMPORTED_MODE):
+        Runner._original_execute_current = Runner.execute_current
+        Runner.execute_current = patched_execute_current
+    else:
+        try:
+            Runner.execute_current = Runner._original_execute_current
+        except Exception:
+            pass
+
+    set_py5_imported_mode()
+
+
 def load_plugin() -> None:
     get_workbench().set_default(_PY5_IMPORTED_MODE, False)
     get_workbench().add_command(
       'toggle_py5_imported_mode',
       'py5',
       tr('Imported mode for py5'),
-      activate_py5_imported_mode,
+      toggle_py5_imported_mode,
       flag_name=_PY5_IMPORTED_MODE,
       group=10,
     )

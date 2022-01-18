@@ -14,24 +14,6 @@ from thonny.plugins.cpython.cpython_backend import (
 )
 
 
-def augment_ast(root: ast.Module) -> None:
-    '''augment run button for thonny imported mode'''
-    mode = os.environ.get('PY5_IMPORTED_MODE', 'False')
-    assert mode != 'False'
-
-    # check for py5 package
-    try:
-        import py5  # @UnusedImport
-    except ImportError:
-        if mode == 'True':
-            print('py5 package not found')
-        return
-
-    # execute script
-    current_file = os.path.join(sys.path[0], sys.argv[0])
-    imported.run_code(current_file)
-
-
 def patched_editor_autocomplete(
       self: MainCPythonBackend, cmd: InlineCommand) -> InlineResponse:
     '''add py5 to autocompletion'''
@@ -49,7 +31,9 @@ def load_plugin() -> None:
     if os.environ.get('PY5_IMPORTED_MODE', 'False').lower() == 'false':
         return
 
-    get_backend().add_ast_postprocessor(augment_ast)
+    # note that _cmd_editor_autocomplete is not a public api
+    # may need to treat different thonny versions differently
+    # https://groups.google.com/g/thonny/c/wWCeXWpKy8c/m/tXDdQCs6AgAJ
     c_e_a = MainCPythonBackend._cmd_editor_autocomplete
     MainCPythonBackend._original_editor_autocomplete = c_e_a
     MainCPythonBackend._cmd_editor_autocomplete = patched_editor_autocomplete
