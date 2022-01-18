@@ -131,7 +131,7 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 - ~~Processing inspired theme for UI~~
 - ~~Processing inspired theme for syntax~~
 - ~~Imported mode Syntax highlighting~~
-- Pop-up built-in save dialog for new unsaved files
+- ~~Pop up built-in save dialog for new unsaved files~~
 - Update instructions/readme
 - ...
 

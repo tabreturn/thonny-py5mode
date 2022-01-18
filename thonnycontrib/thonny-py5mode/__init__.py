@@ -12,7 +12,8 @@ import shutil
 import site
 import threading
 import time
-from thonny import get_workbench, running, THONNY_USER_DIR, token_utils
+from thonny import editors, get_workbench, running, token_utils
+from thonny import THONNY_USER_DIR
 from thonny.languages import tr
 from thonny.running import Runner
 from tkinter.messagebox import showinfo
@@ -122,13 +123,10 @@ def execute_imported_mode() -> None:
 
     if current_file is None:
         # thonny must 'save as' any new files, before it can run them
-        showinfo(
-          'py5 imported mode error',
-          'Save your file somewhere first',
-          master=get_workbench()
-        )
+        editors.Editor.save_file(current_editor)
+        current_file = current_editor.get_filename()
 
-    elif current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
+    if current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
         # save and run py5 imported mode
         current_editor.save_file()
         run_sketch = '/py5_tools/tools/run_sketch.py'
