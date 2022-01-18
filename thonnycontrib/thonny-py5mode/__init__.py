@@ -123,13 +123,13 @@ def execute_imported_mode() -> None:
     if current_file is None:
         # thonny must 'save as' any new files, before it can run them
         showinfo(
-          'py5 module mode error',
+          'py5 imported mode error',
           'Save your file somewhere first',
           master=get_workbench()
         )
 
     elif current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
-        # save and run py5 module mode
+        # save and run py5 imported mode
         current_editor.save_file()
         run_sketch = '/py5_tools/tools/run_sketch.py'
         user_packages = str(site.getusersitepackages())
@@ -175,11 +175,6 @@ def set_py5_imported_mode() -> None:
         if get_workbench().get_option(_PY5_IMPORTED_MODE):
             Runner._original_execute_current = Runner.execute_current
             Runner.execute_current = patched_execute_current
-
-            patched_builtinlist = token_utils._builtinlist + dir(py5)
-            matches = token_utils.matches_any('builtin', patched_builtinlist) + r'\b'
-            BUILTIN = r'([^.\'"\\#]\b|^)' + matches
-            token_utils.BUILTIN = BUILTIN
         else:
             try:
                 Runner.execute_current = Runner._original_execute_current
