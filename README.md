@@ -127,13 +127,11 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 - Restorable Thonny settings -- restore applied py5 config (themes, etc.) on deactivate
 - ~~Support for non-portable/installed Thonny~~
 - Support for portable Thonny
-- Module mode auto-completion
-- Module mode Syntax highlighting -- site-packages/thonny/token_utils.ini > `import py5; _builtinlist += dir(py5)`
-- Highlighting for py5 code
+- ~~Imported mode auto-completion~~
+- Imported mode Syntax highlighting -- site-packages/thonny/token_utils.ini > `import py5; _builtinlist += dir(py5)`
+- ~~Processing inspired editor theme~~
 - ~~Theme for UI~~
 - ~~Theme for syntax~~
-- Add restore (to earlier config) to apply_recommended_py5_config()
-- Clean up and style -- py3clean, pycodestyle
 - Update instructions/readme
 - ...
 
