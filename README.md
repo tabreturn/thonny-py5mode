@@ -134,6 +134,7 @@ If you're interested in Python for creative coding and don't know about [hx2A's]
 - ~~Pop up built-in save dialog for new unsaved files~~
 - Update instructions/readme
 - Conceal full run_sketch.py run command in Thonny shell?
+- Add Processing.py mode (using py5_tools > translators)
 - ...
 
 
