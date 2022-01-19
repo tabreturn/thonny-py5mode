@@ -7,7 +7,6 @@ import jdk
 import keyword
 import os
 import pathlib
-import py5
 import shutil
 import site
 import threading
@@ -18,11 +17,17 @@ from thonny.languages import tr
 from thonny.running import Runner
 from tkinter.messagebox import showinfo
 
+try:
+    import py5
+except ValueError:
+    pass
+
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 _REQUIRE_JDK = 11
 _INSTALL_JDK_MESSAGE = '''
 Thonny requires JDK to run py5 sketches. It\'ll need to download about 180 MB.
-Click OK to proceed. Restart Thonny once it's done.
+
+Click OK to proceed.
 (it may seem like this window is stuck, but JDK is downloading)
 '''
 
@@ -38,7 +43,7 @@ def set_java_home(jdk_path: pathlib.Path) -> None:
     get_workbench().set_option('general.environment', env_vars)
 
 
-def install_jdk() -> None:
+def install_jdk() -> str:
     '''download and setup jdk (installs to thonny config directory)'''
     jdk_dir = 'jdk-' + str(_REQUIRE_JDK)
 
@@ -155,10 +160,13 @@ def patched_execute_current(self: Runner, command_name: str) -> None:
 
 def patch_token_coloring() -> None:
     '''add py5 keywords to syntax highlighting'''
-    patched_builtinlist = token_utils._builtinlist + dir(py5)
-    matches = token_utils.matches_any('builtin', patched_builtinlist)
-    patched_BUILTIN = r'([^.\'"\\#]\b|^)' + (matches + r'\b')
-    token_utils.BUILTIN = patched_BUILTIN
+    try:
+        patched_builtinlist = token_utils._builtinlist + dir(py5)
+        matches = token_utils.matches_any('builtin', patched_builtinlist)
+        patched_BUILTIN = r'([^.\'"\\#]\b|^)' + (matches + r'\b')
+        token_utils.BUILTIN = patched_BUILTIN
+    except NameError:
+        pass
 
 
 def set_py5_imported_mode() -> None:
