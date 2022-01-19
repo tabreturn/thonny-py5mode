@@ -29,11 +29,11 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    You must __restart Thonny__ after this step.
 
-4. When you've restarted Thonny, select *py5 > Imported mode for py5* -- this will download, extract, and set up JDK-11 for you (if you need to know: the plug-in installs JDK in the Thonny user-config directory). Thonny only needs to download JDK the first time you switch to imported mode.
+4. When you've restarted Thonny, select *py5 > Imported mode for py5* --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.01-activate-imported-mode.png)
 
-   NOTE: Thonny will appear to freeze for a while when it's downloading JDK (I have plans to develop a proper progress indicator later).
+   This will download, extract, and set up JDK-11 for you (if you need to know: the plug-in installs JDK in the Thonny user-config directory). Thonny only needs to download JDK the first time you switch to imported mode. __Thonny will appear to freeze__ for a while when it's downloading JDK (I have plans to develop a proper progress indicator later).
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.02-download-jdk.png)
 
@@ -45,7 +45,7 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05-apply-recommended-settings.png)
 
-6. When the py5 *Imported mode for py5* option is checked, Thonny will run your code using py5 --
+6. When the py5 *Imported mode for py5* option is checked, Thonny will run your code (using py5's run_sketch command line tool) --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06.01-imported-activated.png)
 
@@ -82,7 +82,7 @@ def draw():
 py5.run_sketch()
 ```
 
-Note that module mode requires an `import py5` and `run_sketch()` line, and `py5.`prefixes for everything.
+Note that module mode requires an `import py5` and `run_sketch()` line, and `py5.` prefixes for everything.
 
 
 ## Credits
