@@ -19,7 +19,7 @@ from tkinter.messagebox import showinfo
 
 try:
     import py5
-except ValueError:
+except:
     pass
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
@@ -168,7 +168,7 @@ def patch_token_coloring() -> None:
         matches = token_utils.matches_any('builtin', patched_builtinlist)
         patched_BUILTIN = r'([^.\'"\\#]\b|^)' + (matches + r'\b')
         token_utils.BUILTIN = patched_BUILTIN
-    except NameError:
+    except:
         pass
 
 
@@ -187,7 +187,7 @@ def set_py5_imported_mode() -> None:
         else:
             try:
                 Runner.execute_current = Runner._original_execute_current
-            except Exception:
+            except:
                 pass
 
 
