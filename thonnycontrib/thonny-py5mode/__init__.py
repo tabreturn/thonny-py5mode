@@ -104,6 +104,9 @@ def install_jdk() -> str:
                 break
 
         set_java_home(pathlib.Path(THONNY_USER_DIR) / dest)
+        # one-off env var so there is no need to restart thonny on jdk install
+        os.environ['JAVA_HOME'] = str(pathlib.Path(THONNY_USER_DIR) / dest)
+
         return 'JDK-11 installed and JAVA_HOME set'
 
     # set jdk path to thonny config directory
