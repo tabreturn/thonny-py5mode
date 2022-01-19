@@ -82,6 +82,8 @@ def draw():
 py5.run_sketch()
 ```
 
+![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06.02-running-sketch.png)
+
 Note that module mode requires an `import py5` and `run_sketch()` line, and `py5.`prefixes for everything.
 
 
