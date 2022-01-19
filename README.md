@@ -97,7 +97,7 @@ Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring m
 This plug-in is still very much a work in progress ... please report issues [here](https://github.com/tabreturn/thonny-py5mode/issues).
 
 - ~~Integrate alpha version py5 (and JDK) installer~~
-- Display download/installation progress in Thonny (not the terminal)
+- Display download/installation progress in Thonny (not the terminal) -- so Thonny doesn't appear frozen while when it's downloading JDK
 - Restorable Thonny settings -- restore applied py5 config (themes, etc.) on deactivate
 - ~~Support for non-portable/installed Thonny~~
 - Support for portable Thonny?
