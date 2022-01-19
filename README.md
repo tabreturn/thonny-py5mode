@@ -60,7 +60,7 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
        rect(mouse_x, mouse_y, 10, 10)
    ```
 
-   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06.02-running_sketch.png)
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06.02-running-sketch.png)
 
    NOTE: This mode also runs [static mode](https://py5.ixora.io/content/py5_modes.html#static-mode) sketches (when you don't need a `draw()` function for animation).
 
