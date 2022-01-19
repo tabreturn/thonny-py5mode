@@ -11,16 +11,13 @@ import shutil
 import site
 import threading
 import time
+import types
+from importlib import machinery, util
 from thonny import editors, get_workbench, running, token_utils
 from thonny import THONNY_USER_DIR
 from thonny.languages import tr
 from thonny.running import Runner
 from tkinter.messagebox import showinfo
-
-try:
-    import py5
-except:
-    pass
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 _REQUIRE_JDK = 11
@@ -163,13 +160,17 @@ def patched_execute_current(self: Runner, command_name: str) -> None:
 
 def patch_token_coloring() -> None:
     '''add py5 keywords to syntax highlighting'''
-    try:
-        patched_builtinlist = token_utils._builtinlist + dir(py5)
-        matches = token_utils.matches_any('builtin', patched_builtinlist)
-        patched_BUILTIN = r'([^.\'"\\#]\b|^)' + (matches + r'\b')
-        token_utils.BUILTIN = patched_BUILTIN
-    except:
-        pass
+    spec = util.find_spec('py5_tools')
+    # cannot use `dir(py5)` because of jvm check, hence direct loading
+    path = pathlib.Path(spec.submodule_search_locations[0]) / 'reference.py'
+    loader = machinery.SourceFileLoader('py5_tools_reference', str(path))
+    module = types.ModuleType(loader.name)
+    loader.exec_module(module)
+    # add keywords to thonny builtin list
+    patched_builtinlist = token_utils._builtinlist + module.PY5_ALL_STR
+    matches = token_utils.matches_any('builtin', patched_builtinlist)
+    patched_BUILTIN = r'([^.\'"\\#]\b|^)' + (matches + r'\b')
+    token_utils.BUILTIN = patched_BUILTIN
 
 
 def set_py5_imported_mode() -> None:
