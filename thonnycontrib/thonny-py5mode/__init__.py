@@ -20,12 +20,12 @@ from thonny.running import Runner
 from tkinter.messagebox import showinfo
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
-_REQUIRE_JDK = 11
+_REQUIRE_JDK = 17
 _INSTALL_JDK_MESSAGE = '''
 Thonny requires JDK to run py5 sketches. It\'ll need to download about 180 MB.
 
 Click OK to proceed.
-(it may seem like this window is stuck, but JDK is downloading)
+(it may seem like the window is stuck, but JDK is downloading)
 '''
 
 
