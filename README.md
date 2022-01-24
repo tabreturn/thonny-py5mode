@@ -107,4 +107,5 @@ This plug-in is still very much a work in progress ... please report issues [her
 - ~~Update instructions/readme~~
 - Conceal full run_sketch.py run command in Thonny shell?
 - Add Processing.py mode (using py5_tools > translators)?
+- Set interpreter to Thonny deafult (in case user has changed this)
 - ...
