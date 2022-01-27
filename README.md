@@ -82,6 +82,8 @@ def draw():
 py5.run_sketch()
 ```
 
+If you're having trouble running any sketch, click the stop-sign (🛑) button in the Thonny toolbar. Sometimes an old sketch process doesn't close off properly.
+
 Note that module mode requires an `import py5` and `run_sketch()` line, and `py5.` prefixes for everything.
 
 
