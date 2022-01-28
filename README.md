@@ -11,9 +11,10 @@ Use the [Thonny Python IDE](https://thonny.org/) as a Processing PDE alternative
 
 If you already have some version of Thonny *that includes Python 3.8+* on your computer, you can skip straight to step 4.
 
-1. Download and install the *-alt* version of the Thonny IDE (for Python 3.9 support) from: https://github.com/thonny/thonny/releases/tag/v3.3.7
-
-   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download-thonny.png)
+1. Download and install the *-alt* version of the Thonny IDE (for Python 3.9 support) from [github.com/thonny/thonny/releases/tag/v3.3.7](https://github.com/thonny/thonny/releases/tag/v3.3.7):
+    - [thonny-3.3.7-alt.exe](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.exe) <- for Windows
+    - [thonny-3.3.7-alt.pkg](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.pkg) <- for MacOS
+    - [thonny-3.3.7-x86_64-alt.tar.gz](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-x86_64-alt.tar.gz) <- for Linux
 
 2. Start Thonny. If you're running it for the first time, just accept the *Standard* settings.
 
