@@ -115,4 +115,5 @@ This plug-in is still very much a work in progress ... please report issues [her
 - Conceal full run_sketch.py run command in Thonny shell?
 - Add clear console to recommended py5 settings? (https://github.com/thonny/thonny/issues/1681)
 - Remember sketch window postion (https://github.com/hx2A/py5generator/issues/60)
+- Configure GitHub Actions to publish package? (and other useful actions, too?)
 - ...
