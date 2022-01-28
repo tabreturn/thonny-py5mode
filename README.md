@@ -97,6 +97,8 @@ Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring m
 
 This plug-in is still very much a work in progress ... please report issues [here](https://github.com/tabreturn/thonny-py5mode/issues).
 
+<!-- avoided using task list markdown ([x]) because pypi pages won't render this -->
+
 - ~~Integrate alpha version py5 (and JDK) installer~~
 - Display download/installation progress in Thonny (not the terminal) -- so Thonny doesn't appear frozen while when it's downloading JDK
 - Restorable Thonny settings -- restore applied py5 config (themes, etc.) on deactivate
@@ -108,7 +110,9 @@ This plug-in is still very much a work in progress ... please report issues [her
 - ~~Imported mode Syntax highlighting~~
 - ~~Pop up built-in save dialog for new unsaved files~~
 - ~~Update instructions/readme~~
+- Add Processing.py mode (that employs py5_tools > translators)?
+- Set interpreter (in config) to Thonny default (user might have selected another)
 - Conceal full run_sketch.py run command in Thonny shell?
-- Add Processing.py mode (using py5_tools > translators)?
-- Set interpreter to Thonny deafult (in case user has changed this)
+- Add clear console to recommended py5 settings? (https://github.com/thonny/thonny/issues/1681)
+- Remember sketch window postion (https://github.com/hx2A/py5generator/issues/60)
 - ...
