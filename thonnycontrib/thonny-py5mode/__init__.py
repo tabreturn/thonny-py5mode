@@ -115,6 +115,7 @@ def apply_recommended_py5_config() -> None:
     '''apply some recommended settings for thonny py5 work'''
     get_workbench().set_option('view.ui_theme', 'Kyanite UI')
     get_workbench().set_option('view.syntax_theme', 'Kyanite Syntax')
+    get_workbench().set_option('view.locals_highlighting', 'True')
     get_workbench().set_option('assistance.open_assistant_on_errors', 'False')
     get_workbench().set_option('view.assistantview', False)
     get_workbench().hide_view('AssistantView')
