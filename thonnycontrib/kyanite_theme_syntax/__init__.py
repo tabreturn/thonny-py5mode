@@ -26,7 +26,7 @@ def kyanite_syntax() -> workbench.SyntaxThemeSettings:
         'background': gutter_background
       },
       'breakpoint': {'foreground': 'crimson'},
-      'current_line': {'background': '#AAF8FF'},
+      'current_line': {'background': '#D9FAFF'},
       'definition': {'foreground': '#006699', 'font': 'BoldEditorFont'},
       'string': {'foreground': string_fg},
       'string3': {
