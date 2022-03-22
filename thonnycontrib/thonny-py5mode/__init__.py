@@ -111,7 +111,16 @@ def install_jdk() -> str:
     set_java_home(pathlib.Path(THONNY_USER_DIR) / jdk_dir)
     return 'JAVA_HOME set'
 
-def translate_py_Processing_to_py5_imported() -> None:
+def convert_imported_to_module() -> None:
+    convert_code(py5_tools.translators.imported2module)
+
+def convert_module_to_imported() -> None:
+    convert_code(py5_tools.translators.module2imported)
+
+def convert_processingpy_to_imported() -> None:
+    convert_code(py5_tools.translators.processingpy2imported)
+    
+def convert_code(translator) -> None:
     workbench = get_workbench()
     current_editor = workbench.get_editor_notebook().get_current_editor()
     current_file = current_editor.get_filename()
@@ -124,8 +133,7 @@ def translate_py_Processing_to_py5_imported() -> None:
     if current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
         # save and run py5 imported mode
         current_editor.save_file()
-        pp2i = py5_tools.translators.processingpy2imported
-        pp2i.translate_file(current_file, current_file)
+        translator.translate_file(current_file, current_file)
         current_editor._load_file(current_file, keep_undo=True)
         showinfo('py5_tools translators', 'Experimental conversion done' , master=workbench)
 
@@ -238,12 +246,28 @@ def load_plugin() -> None:
       group=20,
     )
     get_workbench().add_command(
-      'translate_py_Processing_to_py5_imported',
+      'convert_processingpy_to_imported',
       'py5',
       tr('Convert Py.Processing code to py5 imported mode'),
-      translate_py_Processing_to_py5_imported,
+      convert_processingpy_to_imported,
       group=30,
     )
-    
+    get_workbench().add_command(
+      'convert_module_to_imported',
+      'py5',
+      tr('Convert py5 module mode code to imported mode'),
+      convert_module_to_imported,
+      group=30,
+    )
+    get_workbench().add_command(
+      'convert_imported_to_module',
+      'py5',
+      tr('Convert py5 imported mode code to module mode'),
+      convert_imported_to_module,
+      group=30,
+    )
+
+
+
     patch_token_coloring()
     set_py5_imported_mode()
