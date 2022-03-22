@@ -18,6 +18,7 @@ from thonny import THONNY_USER_DIR
 from thonny.languages import tr
 from thonny.running import Runner
 from tkinter.messagebox import showinfo
+import py5_tools
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 _REQUIRE_JDK = 17
@@ -110,6 +111,23 @@ def install_jdk() -> str:
     set_java_home(pathlib.Path(THONNY_USER_DIR) / jdk_dir)
     return 'JAVA_HOME set'
 
+def translate_py_Processing_to_py5_imported() -> None:
+    workbench = get_workbench()
+    current_editor = workbench.get_editor_notebook().get_current_editor()
+    current_file = current_editor.get_filename()
+
+    if current_file is None:
+        # thonny must 'save as' any new files, before it can run them
+        editors.Editor.save_file(current_editor)
+        current_file = current_editor.get_filename()
+
+    if current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
+        # save and run py5 imported mode
+        current_editor.save_file()
+        pp2i = py5_tools.translators.processingpy2imported
+        pp2i.translate_file(current_file, current_file)
+        current_editor._load_file(current_file, keep_undo=True)
+        showinfo('py5_tools translators', 'Experimental conversion done' , master=workbench)
 
 def apply_recommended_py5_config() -> None:
     '''apply some recommended settings for thonny py5 work'''
@@ -219,5 +237,13 @@ def load_plugin() -> None:
       apply_recommended_py5_config,
       group=20,
     )
+    get_workbench().add_command(
+      'translate_py_Processing_to_py5_imported',
+      'py5',
+      tr('Convert Py.Processing code to py5 imported mode'),
+      translate_py_Processing_to_py5_imported,
+      group=30,
+    )
+    
     patch_token_coloring()
     set_py5_imported_mode()
