@@ -118,4 +118,5 @@ This plug-in is still very much a work in progress ... please report issues [her
 - Remember sketch window postion (https://github.com/hx2A/py5generator/issues/60)
 - Configure GitHub Actions to publish package? (and other useful actions, too?)
 - pyp5js-powered exporter (to export thonny-py5mode sketches for javascript/web)
+- Provide pre-packaged portable thonny+py5 releases
 - ...
