@@ -8,10 +8,17 @@ import sys
 
 from py5_tools import imported
 from thonny.common import InlineCommand, InlineResponse
-from thonny.plugins.cpython.cpython_backend import (
-  get_backend,
-  MainCPythonBackend
-)
+try:
+    from thonny.plugins.cpython.cpython_backend import (
+      get_backend,
+      MainCPythonBackend
+    )
+except ImportError:
+    # CPython packages were refactored in Thonny 4
+    from thonny.plugins.cpython_backend import (
+      get_backend,
+      MainCPythonBackend
+    )
 
 
 def patched_editor_autocomplete(
