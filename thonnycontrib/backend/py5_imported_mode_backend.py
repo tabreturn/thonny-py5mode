@@ -9,13 +9,13 @@ import sys
 from py5_tools import imported
 from thonny.common import InlineCommand, InlineResponse
 try:
-    from thonny.plugins.cpython.cpython_backend import (
+    from thonny.plugins.cpython_backend import (
       get_backend,
       MainCPythonBackend
     )
 except ImportError:
-    # CPython packages were refactored in Thonny 4
-    from thonny.plugins.cpython_backend import (
+    # CPython packages were laid out differently prior Thonny 4
+    from thonny.plugins.cpython.cpython_backend import (
       get_backend,
       MainCPythonBackend
     )
