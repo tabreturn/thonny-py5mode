@@ -12,6 +12,7 @@ import site
 import threading
 import time
 import types
+from distutils.sysconfig import get_python_lib
 from importlib import machinery, util
 from thonny import editors, get_workbench, running, token_utils
 from thonny import THONNY_USER_DIR
