@@ -110,6 +110,7 @@ This plug-in is still very much a work in progress ... please report issues [her
 - ~~Imported mode Syntax highlighting~~
 - ~~Pop up built-in save dialog for new unsaved files~~
 - ~~Update instructions/readme~~
+- Add 'about' item under py5 menu (for plugin, py5, etc. version info and credits)?
 - Add Processing.py mode (that employs py5_tools > translators)?
 - Set interpreter (in config) to Thonny default (user might have selected another)
 - Conceal full run_sketch.py run command in Thonny shell?
@@ -117,4 +118,5 @@ This plug-in is still very much a work in progress ... please report issues [her
 - Remember sketch window postion (https://github.com/hx2A/py5generator/issues/60)
 - Configure GitHub Actions to publish package? (and other useful actions, too?)
 - pyp5js-powered exporter (to export thonny-py5mode sketches for javascript/web)
+- Provide pre-packaged portable thonny+py5 releases
 - ...
