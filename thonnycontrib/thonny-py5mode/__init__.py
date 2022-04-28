@@ -154,20 +154,20 @@ def execute_imported_mode() -> None:
         current_editor.save_file()
         user_packages = str(site.getusersitepackages())
         site_packages = str(site.getsitepackages()[0])
-        plug_packages = util.find_spec('py5_tools').submodule_search_locations[0]
+        plug_packages = util.find_spec('py5_tools').submodule_search_locations
         run_sketch_locations = [
           pathlib.Path(user_packages + '/py5_tools/tools/run_sketch.py'),
           pathlib.Path(site_packages + '/py5_tools/tools/run_sketch.py'),
-          pathlib.Path(plug_packages + '/tools/run_sketch.py'),
+          pathlib.Path(plug_packages[0] + '/tools/run_sketch.py'),
           pathlib.Path(get_python_lib() + '/py5_tools/tools/run_sketch.py')
         ]
- 
+
         for location in run_sketch_locations:
             # if location matches py5_tools path, use it
             if location.is_file():
                 run_sketch = location
                 break
-        
+
         working_directory = os.path.dirname(current_file)
         cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
         cmd_parts = ['%Run', str(run_sketch), current_file]
@@ -211,7 +211,7 @@ def set_py5_imported_mode() -> None:
         else:
             try:
                 Runner.execute_current = Runner._original_execute_current
-            except:
+            except Exception:
                 pass
 
 
