@@ -16,13 +16,11 @@ try:  # thonny 4 package layout
     from thonny import get_sys_path_directory_containg_plugins
     sys.path.append(get_sys_path_directory_containg_plugins())
     import py5
-    print('----------------------------------------------------------------------------thonny 4')
 except ImportError:  # thonny 3 package layout
     from thonny.plugins.cpython.cpython_backend import (
       get_backend,
       MainCPythonBackend
     )
-    print('----------------------------------------------------------------------------thonny 3')
 
 
 def patched_editor_autocomplete(
