@@ -1,6 +1,14 @@
 '''thonny-py5mode frontend
    interacts with py5mode backend (backend > py5_imported_mode_backend.py)
 '''
+'''
+from thonny import get_sys_path_directory_containg_plugins
+import sys
+sys.path.append(get_sys_path_directory_containg_plugins())
+import py5
+import py5_tools
+'''
+
 
 import builtins
 import jdk
@@ -14,11 +22,18 @@ import time
 import types
 from distutils.sysconfig import get_python_lib
 from importlib import machinery, util
-from thonny import editors, get_workbench, running, token_utils
-from thonny import THONNY_USER_DIR
+from thonny import (
+  editors,
+  get_sys_path_directory_containg_plugins,
+  get_workbench,
+  running,
+  THONNY_USER_DIR,
+  token_utils
+)
 from thonny.languages import tr
 from thonny.running import Runner
 from tkinter.messagebox import showinfo
+
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 _REQUIRE_JDK = 17
@@ -137,17 +152,22 @@ def execute_imported_mode() -> None:
     if current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
         # save and run py5 imported mode
         current_editor.save_file()
-        run_sketch = '/py5_tools/tools/run_sketch.py'
         user_packages = str(site.getusersitepackages())
         site_packages = str(site.getsitepackages()[0])
-        # check for py5 run_sketch path
-        if pathlib.Path(user_packages + run_sketch).is_file():
-            run_sketch = pathlib.Path(user_packages + run_sketch)
-        elif pathlib.Path(site_packages + run_sketch).is_file():
-            run_sketch = pathlib.Path(site_packages + run_sketch)
-        else:
-            run_sketch = pathlib.Path(get_python_lib() + run_sketch)
-
+        plug_packages = util.find_spec('py5_tools').submodule_search_locations[0]
+        run_sketch_locations = [
+          pathlib.Path(user_packages + '/py5_tools/tools/run_sketch.py'),
+          pathlib.Path(site_packages + '/py5_tools/tools/run_sketch.py'),
+          pathlib.Path(plug_packages + '/tools/run_sketch.py'),
+          pathlib.Path(get_python_lib() + '/py5_tools/tools/run_sketch.py')
+        ]
+ 
+        for location in run_sketch_locations:
+            # if location matches py5_tools path, use it
+            if location.is_file():
+                run_sketch = location
+                break
+        
         working_directory = os.path.dirname(current_file)
         cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
         cmd_parts = ['%Run', str(run_sketch), current_file]

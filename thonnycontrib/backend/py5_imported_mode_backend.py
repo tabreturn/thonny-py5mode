@@ -5,20 +5,24 @@
 import ast
 import os
 import sys
-
 from py5_tools import imported
 from thonny.common import InlineCommand, InlineResponse
-try:
+try:  # thonny 4 package layout
     from thonny.plugins.cpython_backend import (
       get_backend,
       MainCPythonBackend
     )
-except ImportError:
-    # CPython packages were laid out differently prior Thonny 4
+    # add plug-in packages to packages path
+    from thonny import get_sys_path_directory_containg_plugins
+    sys.path.append(get_sys_path_directory_containg_plugins())
+    import py5
+    print('----------------------------------------------------------------------------thonny 4')
+except ImportError:  # thonny 3 package layout
     from thonny.plugins.cpython.cpython_backend import (
       get_backend,
       MainCPythonBackend
     )
+    print('----------------------------------------------------------------------------thonny 3')
 
 
 def patched_editor_autocomplete(
