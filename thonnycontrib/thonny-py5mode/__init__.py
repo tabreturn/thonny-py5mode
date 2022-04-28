@@ -1,14 +1,6 @@
 '''thonny-py5mode frontend
    interacts with py5mode backend (backend > py5_imported_mode_backend.py)
 '''
-'''
-from thonny import get_sys_path_directory_containg_plugins
-import sys
-sys.path.append(get_sys_path_directory_containg_plugins())
-import py5
-import py5_tools
-'''
-
 
 import builtins
 import jdk
@@ -22,17 +14,15 @@ import time
 import types
 from distutils.sysconfig import get_python_lib
 from importlib import machinery, util
-from thonny import (
-  editors,
-  get_sys_path_directory_containg_plugins,
-  get_workbench,
-  running,
-  THONNY_USER_DIR,
-  token_utils
-)
+from thonny import editors, get_workbench, running, token_utils
+from thonny import THONNY_USER_DIR
 from thonny.languages import tr
 from thonny.running import Runner
 from tkinter.messagebox import showinfo
+try:  # thonny 4 package layout
+    from thonny import get_sys_path_directory_containg_plugins
+except ImportError:  # thonny 3 package layout
+    pass
 
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
