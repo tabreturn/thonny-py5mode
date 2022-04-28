@@ -13,6 +13,7 @@ try:  # thonny 4 package layout
       MainCPythonBackend
     )
     # add plug-in packages to packages path
+    # https://groups.google.com/g/thonny/c/dhMOGXZHTDU
     from thonny import get_sys_path_directory_containg_plugins
     sys.path.append(get_sys_path_directory_containg_plugins())
     import py5
@@ -22,7 +23,7 @@ except ImportError:  # thonny 3 package layout
       MainCPythonBackend
     )
 
-
+# FIXME: code completion isn't working
 def patched_editor_autocomplete(
       self: MainCPythonBackend, cmd: InlineCommand) -> InlineResponse:
     '''add py5 to autocompletion'''
@@ -42,7 +43,7 @@ def load_plugin() -> None:
 
     # note that _cmd_editor_autocomplete is not a public api
     # may need to treat different thonny versions differently
-    # https://groups.google.com/g/thonny/c/wWCeXWpKy8c/m/tXDdQCs6AgAJ
+    # https://groups.google.com/g/thonny/c/wWCeXWpKy8c
     c_e_a = MainCPythonBackend._cmd_editor_autocomplete
     MainCPythonBackend._original_editor_autocomplete = c_e_a
     MainCPythonBackend._cmd_editor_autocomplete = patched_editor_autocomplete
