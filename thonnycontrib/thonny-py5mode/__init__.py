@@ -19,6 +19,11 @@ from thonny import THONNY_USER_DIR
 from thonny.languages import tr
 from thonny.running import Runner
 from tkinter.messagebox import showinfo
+try:  # thonny 4 package layout
+    from thonny import get_sys_path_directory_containg_plugins
+except ImportError:  # thonny 3 package layout
+    pass
+
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 _REQUIRE_JDK = 17
@@ -137,16 +142,21 @@ def execute_imported_mode() -> None:
     if current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
         # save and run py5 imported mode
         current_editor.save_file()
-        run_sketch = '/py5_tools/tools/run_sketch.py'
         user_packages = str(site.getusersitepackages())
         site_packages = str(site.getsitepackages()[0])
-        # check for py5 run_sketch path
-        if pathlib.Path(user_packages + run_sketch).is_file():
-            run_sketch = pathlib.Path(user_packages + run_sketch)
-        elif pathlib.Path(site_packages + run_sketch).is_file():
-            run_sketch = pathlib.Path(site_packages + run_sketch)
-        else:
-            run_sketch = pathlib.Path(get_python_lib() + run_sketch)
+        plug_packages = util.find_spec('py5_tools').submodule_search_locations
+        run_sketch_locations = [
+          pathlib.Path(user_packages + '/py5_tools/tools/run_sketch.py'),
+          pathlib.Path(site_packages + '/py5_tools/tools/run_sketch.py'),
+          pathlib.Path(plug_packages[0] + '/tools/run_sketch.py'),
+          pathlib.Path(get_python_lib() + '/py5_tools/tools/run_sketch.py')
+        ]
+
+        for location in run_sketch_locations:
+            # if location matches py5_tools path, use it
+            if location.is_file():
+                run_sketch = location
+                break
 
         working_directory = os.path.dirname(current_file)
         cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
@@ -191,7 +201,7 @@ def set_py5_imported_mode() -> None:
         else:
             try:
                 Runner.execute_current = Runner._original_execute_current
-            except:
+            except Exception:
                 pass
 
 
