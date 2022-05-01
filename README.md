@@ -91,6 +91,18 @@ py5.run_sketch()
 Note that module mode requires an `import py5` and `run_sketch()` line, and `py5.` prefixes for everything.
 
 
+## Useful py5 resources
+
+py5 is a new version of Processing for Python 3.8+. It makes the Java Processing jars available to the CPython interpreter using JPype. It can do just about everything Processing can do, except with Python instead of Java code. Here are some useful py5 resources (alphabetically listed) --
+
+* [py5 cheatsheet](https://raw.githubusercontent.com/tabreturn/processing.py-cheat-sheet/master/py5/py5_cc.pdf)
+* [py5 discussions/forum](https://github.com/hx2A/py5generator/discussions)
+* [py5 documentation](http://py5.ixora.io/)
+* [py5 examples](https://github.com/hx2A/py5examples)
+* [Processing forum](https://discourse.processing.org/)
+* [Villares' sketch-a-day archive](https://abav.lugaralgum.com/sketch-a-day/)
+
+
 ## Credits
 
 Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring me to develop this plug-in, [hx2A](https://github.com/hx2A/) for the awesome [py5 project](https://py5.ixora.io/), and the [Thonny folks](https://github.com/thonny) for their fantastic IDE.
