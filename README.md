@@ -68,7 +68,7 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    NOTE: This mode also runs [static mode](https://py5.ixora.io/content/py5_modes.html#static-mode) sketches (when you don't need a `draw()` function for animation).
 
-   NOTE: If you're having trouble running any sketch, click the stop-sign (<font size="1">🛑</font>) button in the Thonny toolbar. Sometimes an old sketch process doesn't close off properly.
+   NOTE: If you're having trouble running any sketch, click the stop-sign (🛑) button in the Thonny toolbar. Sometimes an old sketch process doesn't close off properly.
 
 
 ## Module Mode Sketches
