@@ -11,11 +11,13 @@ Use the [Thonny Python IDE](https://thonny.org/) as a Processing PDE alternative
 
 If you already have some version of Thonny *that includes Python 3.8+* on your computer, you can skip straight to step 4.
 
-1. The Thonny 4 IDE (currently in beta) includes Python 3.10. Download and install the latest Thonny 4 release from: [https://github.com/thonny/thonny/releases](https://github.com/thonny/thonny/releases). 
 
-   If you prefer to use Thonny 3, you can download and install the [*-alt* version of Thonny 3](https://github.com/thonny/thonny/releases/tag/v3.3.7) (for Python 3.9 support). **For Windows, you'll need to use this version** until JPype adds wheels for Python 3.10 (hopefully, soon).
+1. Download and install the Thonny 3.3.7 *-alt* version of the Thonny IDE (for Python 3.9 support) from [github.com/thonny/thonny/releases/tag/v3.3.7](https://github.com/thonny/thonny/releases/tag/v3.3.7):
+    - [thonny-3.3.7-alt.exe](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.exe) <- for Windows
+    - [thonny-3.3.7-alt.pkg](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.pkg) <- for MacOS
+    - [thonny-3.3.7-x86_64-alt.tar.gz](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-x86_64-alt.tar.gz) <- for Linux
 
-   Expanding the *Assets* for any release will reveal the downloads for Windows/macOS/Linux --
+   The Thonny 4 IDE (currently in beta) ships with Python 3.10. The thonny-py5mode plug-in should run fine on Thonny 4 for Linux, but macOS and Windows support are in progress. Expanding the *Assets* [for any release](https://github.com/thonny/thonny/releases) will reveal the downloads for Windows/macOS/Linux --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download-thonny.png)
 
