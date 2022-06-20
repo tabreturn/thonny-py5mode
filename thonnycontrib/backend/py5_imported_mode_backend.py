@@ -10,6 +10,7 @@ from py5_tools import imported
 from thonny import get_version
 from thonny.common import InlineCommand, InlineResponse
 try:  # thonny 4 package layout
+    from thonny import jedi_utils
     from thonny.plugins.cpython_backend import (
       get_backend,
       MainCPythonBackend
@@ -29,16 +30,24 @@ except ImportError:  # thonny 3 package layout
 def patched_editor_autocomplete(
       self: MainCPythonBackend, cmd: InlineCommand) -> InlineResponse:
     '''add py5 to autocompletion'''
-    if int(get_version()[0]) >= 4:  # thonny 4 package layout
-        sys.path.append(
-          pathlib.Path(get_sys_path_directory_containg_plugins(), 'py5'))
-        import py5
-
     prefix = 'from py5 import *\n'
     cmd['source'] = prefix + cmd['source']
-    cmd['row'] = cmd['row'] + 1
-    result = get_backend()._original_editor_autocomplete(cmd)
-    result['row'] = result['row'] - 1
+    cmd['row'] += 1
+
+    if int(get_version()[0]) >= 4:  # thonny 4 package layout
+        result = dict(
+          source=cmd.source,
+          row=cmd.row,
+          column=cmd.column,
+          filename=cmd.filename,
+        )
+        result['completions'] = jedi_utils.get_script_completions(
+          **result, sys_path=[get_sys_path_directory_containg_plugins()]
+        )
+    else:
+        result = get_backend()._original_editor_autocomplete(cmd)
+
+    result['row'] -= 1
     result['source'] = result['source'][len(prefix):]
     return result
 
