@@ -19,7 +19,12 @@ try:  # thonny 4 package layout
     # https://groups.google.com/g/thonny/c/dhMOGXZHTDU
     from thonny import get_sys_path_directory_containg_plugins
     sys.path.append(get_sys_path_directory_containg_plugins())
-    import py5
+    try:
+        import py5
+    except:
+        print('It looks like py5 isn\'t operational yet.')
+        print('It\'s likey JDK isn\'t installed yet. In the menu bar, select:')
+        print('\x1B[3mpy5 > Imported mode for py5\x1B[0m')
 except ImportError:  # thonny 3 package layout
     from thonny.plugins.cpython.cpython_backend import (
       get_backend,
