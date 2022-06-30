@@ -11,10 +11,15 @@ Use the [Thonny Python IDE](https://thonny.org/) as a Processing PDE alternative
 
 If you already have some version of Thonny *that includes Python 3.8+* on your computer, you can skip straight to step 4.
 
-1. Download and install the *-alt* version of the Thonny IDE (for Python 3.9 support) from [github.com/thonny/thonny/releases/tag/v3.3.7](https://github.com/thonny/thonny/releases/tag/v3.3.7):
+
+1. Download and install the Thonny 3.3.7 *-alt* version of the Thonny IDE (for Python 3.9 support) from [github.com/thonny/thonny/releases/tag/v3.3.7](https://github.com/thonny/thonny/releases/tag/v3.3.7):
     - [thonny-3.3.7-alt.exe](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.exe) <- for Windows
     - [thonny-3.3.7-alt.pkg](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.pkg) <- for MacOS
     - [thonny-3.3.7-x86_64-alt.tar.gz](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-x86_64-alt.tar.gz) <- for Linux
+
+   The Thonny 4 IDE (currently in beta) ships with Python 3.10. The thonny-py5mode plug-in should run fine on Thonny 4 for Linux, but macOS and Windows support are in progress. Expanding the *Assets* [for any release](https://github.com/thonny/thonny/releases) will reveal the downloads for Windows/macOS/Linux --
+
+   ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download-thonny.png)
 
 2. Start Thonny. If you're running it for the first time, just accept the *Standard* settings.
 
@@ -65,7 +70,7 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    NOTE: This mode also runs [static mode](https://py5.ixora.io/content/py5_modes.html#static-mode) sketches (when you don't need a `draw()` function for animation).
 
-   NOTE: If you're having trouble running any sketch, click the stop-sign (<font size="1">🛑</font>) button in the Thonny toolbar. Sometimes an old sketch process doesn't close off properly.
+   NOTE: If you're having trouble running any sketch, click the stop-sign (🛑) button in the Thonny toolbar. Sometimes an old sketch process doesn't close off properly.
 
 
 ## Module Mode Sketches
@@ -88,34 +93,24 @@ py5.run_sketch()
 Note that module mode requires an `import py5` and `run_sketch()` line, and `py5.` prefixes for everything.
 
 
+## Useful py5 resources
+
+py5 is a new version of Processing for Python 3.8+. It makes the Java Processing jars available to the CPython interpreter using JPype. It can do just about everything Processing can do, except with Python instead of Java code. Here are some useful py5 resources (alphabetically listed) --
+
+* [py5 cheatsheet](https://raw.githubusercontent.com/tabreturn/processing.py-cheat-sheet/master/py5/py5_cc.pdf)
+* [py5 discussions/forum](https://github.com/py5coding/py5generator/discussions)
+* [py5 documentation](http://py5.ixora.io/)
+* [py5 examples](https://github.com/py5coding/py5examples)
+* [Processing forum](https://discourse.processing.org/)
+* [Villares' sketch-a-day archive](https://abav.lugaralgum.com/sketch-a-day/)
+
+
 ## Credits
 
 Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring me to develop this plug-in, [hx2A](https://github.com/hx2A/) for the awesome [py5 project](https://py5.ixora.io/), and the [Thonny folks](https://github.com/thonny) for their fantastic IDE.
 
 
+
 ## Todo List
 
-This plug-in is still very much a work in progress ... please report issues [here](https://github.com/tabreturn/thonny-py5mode/issues).
-
-<!-- avoided using task list markdown ([x]) because pypi pages won't render this -->
-
-- ~~Integrate alpha version py5 (and JDK) installer~~
-- Display download/installation progress in Thonny (not the terminal) -- so Thonny doesn't appear frozen while when it's downloading JDK
-- Restorable Thonny settings -- restore applied py5 config (themes, etc.) on deactivate
-- ~~Support for non-portable/installed Thonny~~
-- Support for portable Thonny?
-- ~~Imported mode auto-completion~~
-- ~~Processing inspired theme for UI~~
-- ~~Processing inspired theme for syntax~~
-- ~~Imported mode Syntax highlighting~~
-- ~~Pop up built-in save dialog for new unsaved files~~
-- ~~Update instructions/readme~~
-- Add 'about' item under py5 menu (for plugin, py5, etc. version info and credits)?
-- Add Processing.py mode (that employs py5_tools > translators)?
-- Set interpreter (in config) to Thonny default (user might have selected another)
-- Conceal full run_sketch.py run command in Thonny shell?
-- Add clear console to recommended py5 settings? (https://github.com/thonny/thonny/issues/1681)
-- Remember sketch window postion (https://github.com/hx2A/py5generator/issues/60)
-- Configure GitHub Actions to publish package? (and other useful actions, too?)
-- pyp5js-powered exporter (to export thonny-py5mode sketches for javascript/web)
-- ...
+See [discussions on GitHub repo](https://github.com/tabreturn/thonny-py5mode/discussions/17). This plug-in is still very much a work in progress ... please report issues [here](https://github.com/tabreturn/thonny-py5mode/issues).
