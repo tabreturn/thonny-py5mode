@@ -12,6 +12,7 @@ import site
 import threading
 import time
 import types
+import webbrowser
 from distutils.sysconfig import get_python_lib
 from importlib import machinery, util
 from thonny import editors, get_workbench, running, token_utils
@@ -229,6 +230,20 @@ def load_plugin() -> None:
       tr('Apply recommended py5 settings'),
       apply_recommended_py5_config,
       group=20,
+    )
+    get_workbench().add_command(
+      'py5_reference',
+      'py5',
+      tr('py5 reference'),
+      lambda: webbrowser.open('https://py5.ixora.io/reference/sketch.html'),
+      group=30,
+    )
+    get_workbench().add_command(
+      'py5_cheatsheet',
+      'py5',
+      tr('py5 cheatsheet'),
+      lambda: webbrowser.open('https://raw.githubusercontent.com/tabreturn/processing.py-cheat-sheet/master/py5/py5_cc.pdf'),
+      group=30,
     )
     patch_token_coloring()
     set_py5_imported_mode()
