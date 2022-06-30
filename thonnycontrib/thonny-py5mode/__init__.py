@@ -19,6 +19,7 @@ from thonny import editors, get_workbench, running, token_utils
 from thonny import THONNY_USER_DIR
 from thonny.languages import tr
 from thonny.running import Runner
+from tkinter.colorchooser import askcolor
 from tkinter.messagebox import showinfo
 try:  # thonny 4 package layout
     from thonny import get_sys_path_directory_containg_plugins
@@ -214,6 +215,12 @@ def toggle_py5_imported_mode() -> None:
     set_py5_imported_mode()
 
 
+def color_selector():
+    '''open tkinter color selector'''
+    colors = askcolor(title='Color Selector')
+    print(colors[1])
+
+
 def load_plugin() -> None:
     get_workbench().set_default(_PY5_IMPORTED_MODE, False)
     get_workbench().add_command(
@@ -230,6 +237,13 @@ def load_plugin() -> None:
       tr('Apply recommended py5 settings'),
       apply_recommended_py5_config,
       group=20,
+    )
+    get_workbench().add_command(
+      'py5_color_selector',
+      'py5',
+      tr('Color selector'),
+      color_selector,
+      group=30,
     )
     get_workbench().add_command(
       'py5_reference',
