@@ -27,6 +27,13 @@ except ImportError:  # thonny 3 package layout
     pass
 
 
+try:  # thonny 4 package layout
+    from thonny import get_sys_path_directory_containg_plugins
+except ImportError:  # thonny 3 package layout
+    pass
+
+import py5_tools
+
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 _REQUIRE_JDK = 17
 _INSTALL_JDK_MESSAGE = '''
@@ -118,6 +125,31 @@ def install_jdk() -> str:
     set_java_home(pathlib.Path(THONNY_USER_DIR) / jdk_dir)
     return 'JAVA_HOME set'
 
+def convert_imported_to_module() -> None:
+    convert_code(py5_tools.translators.imported2module)
+
+def convert_module_to_imported() -> None:
+    convert_code(py5_tools.translators.module2imported)
+
+def convert_processingpy_to_imported() -> None:
+    convert_code(py5_tools.translators.processingpy2imported)
+    
+def convert_code(translator) -> None:
+    workbench = get_workbench()
+    current_editor = workbench.get_editor_notebook().get_current_editor()
+    current_file = current_editor.get_filename()
+
+    if current_file is None:
+        # thonny must 'save as' any new files, before it can run them
+        editors.Editor.save_file(current_editor)
+        current_file = current_editor.get_filename()
+
+    if current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
+        # save and run py5 imported mode
+        current_editor.save_file()
+        translator.translate_file(current_file, current_file)
+        current_editor._load_file(current_file, keep_undo=True)
+        showinfo('py5_tools translators', 'Experimental conversion done' , master=workbench)
 
 def apply_recommended_py5_config() -> None:
     '''apply some recommended settings for thonny py5 work'''
@@ -206,7 +238,6 @@ def set_py5_imported_mode() -> None:
             except Exception:
                 pass
 
-
 def toggle_py5_imported_mode() -> None:
     '''toggle py5 imported mode settings'''
     var = get_workbench().get_variable(_PY5_IMPORTED_MODE)
@@ -239,6 +270,28 @@ def load_plugin() -> None:
       group=20,
     )
     get_workbench().add_command(
+      'convert_processingpy_to_imported',
+      'py5',
+      tr('Convert Py.Processing code to py5 imported mode'),
+      convert_processingpy_to_imported,
+      group=30,
+    )
+    get_workbench().add_command(
+      'convert_module_to_imported',
+      'py5',
+      tr('Convert py5 module mode code to imported mode'),
+      convert_module_to_imported,
+      group=30,
+    )
+    get_workbench().add_command(
+      'convert_imported_to_module',
+      'py5',
+      tr('Convert py5 imported mode code to module mode'),
+      convert_imported_to_module,
+      'py5_color_selector',
+      group=30,
+    )
+    get_workbench().add_command(
       'py5_color_selector',
       'py5',
       tr('Color selector'),
@@ -261,3 +314,4 @@ def load_plugin() -> None:
     )
     patch_token_coloring()
     set_py5_imported_mode()
+    
