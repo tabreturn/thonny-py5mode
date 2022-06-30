@@ -7,10 +7,12 @@ import jdk
 import keyword
 import os
 import pathlib
+import py5_tools
 import shutil
 import site
 import threading
 import time
+import tkinter
 import types
 import webbrowser
 from distutils.sysconfig import get_python_lib
@@ -19,20 +21,12 @@ from thonny import editors, get_workbench, running, token_utils
 from thonny import THONNY_USER_DIR
 from thonny.languages import tr
 from thonny.running import Runner
-from tkinter.colorchooser import askcolor
 from tkinter.messagebox import showinfo
 try:  # thonny 4 package layout
     from thonny import get_sys_path_directory_containg_plugins
 except ImportError:  # thonny 3 package layout
     pass
 
-
-try:  # thonny 4 package layout
-    from thonny import get_sys_path_directory_containg_plugins
-except ImportError:  # thonny 3 package layout
-    pass
-
-import py5_tools
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 _REQUIRE_JDK = 17
@@ -125,31 +119,6 @@ def install_jdk() -> str:
     set_java_home(pathlib.Path(THONNY_USER_DIR) / jdk_dir)
     return 'JAVA_HOME set'
 
-def convert_imported_to_module() -> None:
-    convert_code(py5_tools.translators.imported2module)
-
-def convert_module_to_imported() -> None:
-    convert_code(py5_tools.translators.module2imported)
-
-def convert_processingpy_to_imported() -> None:
-    convert_code(py5_tools.translators.processingpy2imported)
-    
-def convert_code(translator) -> None:
-    workbench = get_workbench()
-    current_editor = workbench.get_editor_notebook().get_current_editor()
-    current_file = current_editor.get_filename()
-
-    if current_file is None:
-        # thonny must 'save as' any new files, before it can run them
-        editors.Editor.save_file(current_editor)
-        current_file = current_editor.get_filename()
-
-    if current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
-        # save and run py5 imported mode
-        current_editor.save_file()
-        translator.translate_file(current_file, current_file)
-        current_editor._load_file(current_file, keep_undo=True)
-        showinfo('py5_tools translators', 'Experimental conversion done' , master=workbench)
 
 def apply_recommended_py5_config() -> None:
     '''apply some recommended settings for thonny py5 work'''
@@ -238,6 +207,7 @@ def set_py5_imported_mode() -> None:
             except Exception:
                 pass
 
+
 def toggle_py5_imported_mode() -> None:
     '''toggle py5 imported mode settings'''
     var = get_workbench().get_variable(_PY5_IMPORTED_MODE)
@@ -248,8 +218,40 @@ def toggle_py5_imported_mode() -> None:
 
 def color_selector():
     '''open tkinter color selector'''
-    colors = askcolor(title='Color Selector')
+    colors = tkinter.colorchooser.askcolor(title='Color Selector')
     print(colors[1])
+
+
+def convert_code(translator) -> None:
+    '''function to handle different py5_tools conversions'''
+    workbench = get_workbench()
+    current_editor = workbench.get_editor_notebook().get_current_editor()
+    current_file = current_editor.get_filename()
+
+    if current_file is None:
+        # save unsaved file before attempting to convert it
+        editors.Editor.save_file(current_editor)
+        current_file = current_editor.get_filename()
+
+    if current_file and current_file.split('.')[-1] in ('py', 'py5', 'pyde'):
+        # save and run perform conversion
+        current_editor.save_file()
+        translator.translate_file(current_file, current_file)
+        current_editor._load_file(current_file, keep_undo=True)
+        showinfo('py5 Conversion', 'Conversion complete', master=workbench)
+
+
+# items for the menu: py5 > Conversion tools
+conversion_tools_menu = tkinter.Menu(tearoff=0)
+conversion_tools_menu.add_command(
+  label='Processing.py → py5 imported mode',
+  command=lambda: convert_code(py5_tools.translators.processingpy2imported))
+conversion_tools_menu.add_command(
+  label='py5 module mode → imported mode',
+  command=lambda: convert_code(py5_tools.translators.imported2module))
+conversion_tools_menu.add_command(
+  label='py5 imported mode → module mode',
+  command=lambda: convert_code(py5_tools.translators.module2imported))
 
 
 def load_plugin() -> None:
@@ -270,28 +272,6 @@ def load_plugin() -> None:
       group=20,
     )
     get_workbench().add_command(
-      'convert_processingpy_to_imported',
-      'py5',
-      tr('Convert Py.Processing code to py5 imported mode'),
-      convert_processingpy_to_imported,
-      group=30,
-    )
-    get_workbench().add_command(
-      'convert_module_to_imported',
-      'py5',
-      tr('Convert py5 module mode code to imported mode'),
-      convert_module_to_imported,
-      group=30,
-    )
-    get_workbench().add_command(
-      'convert_imported_to_module',
-      'py5',
-      tr('Convert py5 imported mode code to module mode'),
-      convert_imported_to_module,
-      'py5_color_selector',
-      group=30,
-    )
-    get_workbench().add_command(
       'py5_color_selector',
       'py5',
       tr('Color selector'),
@@ -305,13 +285,21 @@ def load_plugin() -> None:
       lambda: webbrowser.open('https://py5.ixora.io/reference/sketch.html'),
       group=30,
     )
+    git_raw_user = 'https://raw.githubusercontent.com/tabreturn/'
+    git_asset_path = 'processing.py-cheat-sheet/master/py5/py5_cc.pdf'
     get_workbench().add_command(
       'py5_cheatsheet',
       'py5',
       tr('py5 cheatsheet'),
-      lambda: webbrowser.open('https://raw.githubusercontent.com/tabreturn/processing.py-cheat-sheet/master/py5/py5_cc.pdf'),
+      lambda: webbrowser.open(git_raw_user + git_asset_path),
       group=30,
+    )
+    get_workbench().add_command(
+      'conversion_tools',
+      'py5',
+      tr('Conversion tools'),
+      submenu=conversion_tools_menu,
+      group=40,
     )
     patch_token_coloring()
     set_py5_imported_mode()
-    
