@@ -12,7 +12,7 @@ import shutil
 import site
 import threading
 import time
-import tkinter
+import tkinter as tk
 import types
 import webbrowser
 from .about_plugin import open_about_plugin
@@ -22,6 +22,7 @@ from thonny import editors, get_workbench, running, token_utils
 from thonny import THONNY_USER_DIR
 from thonny.languages import tr
 from thonny.running import Runner
+from tkinter import colorchooser
 from tkinter.messagebox import showinfo
 try:  # thonny 4 package layout
     from thonny import get_sys_path_directory_containg_plugins
@@ -219,7 +220,7 @@ def toggle_py5_imported_mode() -> None:
 
 def color_selector():
     '''open tkinter color selector'''
-    colors = tkinter.colorchooser.askcolor(title='Color Selector')
+    colors = colorchooser.askcolor(title='Color Selector')
     print(colors[1])
 
 
@@ -242,7 +243,7 @@ def convert_code(translator) -> None:
         showinfo('py5 Conversion', 'Conversion complete', master=workbench)
 
 
-conversion_tools_menu = tkinter.Menu(tearoff=0)
+conversion_tools_menu = tk.Menu(tearoff=0)
 # items for the menu: py5 > Conversion tools
 conversion_tools_menu.add_command(
   label='Processing.py → py5 imported mode',
