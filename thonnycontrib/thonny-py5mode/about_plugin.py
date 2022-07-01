@@ -5,6 +5,7 @@
 import sys
 import platform
 import tkinter as tk
+import webbrowser
 from jpype._jvmfinder import JVMNotFoundException
 from tkinter import ttk
 from thonny import get_version, get_workbench, ui_utils
@@ -21,6 +22,7 @@ except JVMNotFoundException:  # jre not installed (yet?)
 
 
 def get_os_word_size_guess() -> None:
+    '''check whether system is 34 or 64-bit'''
     if '32' in platform.machine() and '64' not in platform.machine():
         return '(32-bit)'
     elif '64' in platform.machine() and '32' not in platform.machine():
@@ -58,10 +60,10 @@ class AboutDialog(ui_utils.CommonDialog):
           main_frame,
           text=url,
           style='Url.TLabel',
-          cursor=ui_utils.get_hyperlink_cursor(),
+          cursor='hand2',
           font=url_font
         )
-        url_label.grid()
+        url_label.grid(pady=(0, 20))
         url_label.bind('<Button-1>', lambda _: webbrowser.open(url))
         # os/distro check
         if sys.platform == 'linux':
@@ -84,13 +86,13 @@ class AboutDialog(ui_utils.CommonDialog):
           + '\n py5 ' + _PY5_VERSION
           + '\n Thonny ' + get_version()
         )
-        platform_label.grid(pady=20)
+        platform_label.grid()
         # credits
         credits_label = ttk.Label(
           main_frame,
           text=tr('Built with py5'),
           style='Url.TLabel',
-          cursor=ui_utils.get_hyperlink_cursor(),
+          cursor='hand2',
           font=url_font,
           justify='center'
         )
@@ -100,28 +102,26 @@ class AboutDialog(ui_utils.CommonDialog):
             lambda _: webbrowser.open('https://py5.ixora.io/'),
         )
         credits_label.grid(pady=20)
-
-
-
-
-        ok_button = ttk.Button(main_frame, text=tr('OK'), command=self._ok, default='active')
+        # butttons
+        ok_button = ttk.Button(
+          main_frame,
+          text=tr('OK'),
+          command=self._ok,
+          default='active'
+        )
         ok_button.grid(pady=(0, 15))
         ok_button.focus_set()
-
         self.bind('<Return>', self._ok, True)
         self.bind('<Escape>', self._ok, True)
 
     def _ok(self, event=None) -> None:
+        '''call when closing window, responsible for handling all cleanup'''
         self.destroy()
 
 
-
 def open_about_plugin() -> None:
+    '''call to display about thonny-py5mode window'''
     ui_utils.show_dialog(AboutDialog(get_workbench()))
-
-
-
-
 
 
 get_workbench().add_command(
