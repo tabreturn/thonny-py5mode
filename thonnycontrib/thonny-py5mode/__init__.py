@@ -15,6 +15,7 @@ import time
 import tkinter
 import types
 import webbrowser
+from .about_plugin import open_about_plugin
 from distutils.sysconfig import get_python_lib
 from importlib import machinery, util
 from thonny import editors, get_workbench, running, token_utils
@@ -241,8 +242,8 @@ def convert_code(translator) -> None:
         showinfo('py5 Conversion', 'Conversion complete', master=workbench)
 
 
-# items for the menu: py5 > Conversion tools
 conversion_tools_menu = tkinter.Menu(tearoff=0)
+# items for the menu: py5 > Conversion tools
 conversion_tools_menu.add_command(
   label='Processing.py → py5 imported mode',
   command=lambda: convert_code(py5_tools.translators.processingpy2imported))

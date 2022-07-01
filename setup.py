@@ -1,11 +1,15 @@
 import pathlib
 from setuptools import setup
 
+version = pathlib.Path(__file__).parent.absolute()
+version = version / 'thonnycontrib/thonny-py5mode/_version.py'
+exec(open(version).read())
+
 README = (pathlib.Path(__file__).parent / 'README.md').read_text()
 
 setup(
   name='thonny-py5mode',
-  version='0.3.3-alpha',
+  version=__version__,
   description='py5 mode plugin for Thonny',
   long_description=README,
   long_description_content_type='text/markdown',
