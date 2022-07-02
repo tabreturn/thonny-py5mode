@@ -260,7 +260,6 @@ def patched_handle_program_output(self, msg: BackendEvent) -> None:
         # write display window location to config file
         if len(py5_loc) == 2:
             py5_loc = py5_loc[0] + ',' + py5_loc[1]
-            print(py5_loc)
             get_workbench().set_option('run.py5_location', py5_loc)
         # skip the rest of the function so the shell won't display coords
         return
