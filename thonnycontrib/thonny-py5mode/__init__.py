@@ -163,11 +163,19 @@ def execute_imported_mode() -> None:
                 run_sketch = location
                 break
 
+        # if display window location unspecified, set it to (50, 50)
+        if get_workbench().get_option('run.py5_location') is None:
+            get_workbench().set_option('run.py5_location', '50,50')
+        # retrieve last display window location
+        py5_loc = get_workbench().get_option('run.py5_location')
+        py5_loc = ','.join(map(str, py5_loc))
+        py5_switches = '--py5_options external location=' + py5_loc
+
+        # run command to execute sketch
         working_directory = os.path.dirname(current_file)
         cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
-        cmd_parts = ['%Run', str(run_sketch), current_file]
-        ed_token = [running.EDITOR_CONTENT_TOKEN]
-        exe_cmd_line = running.construct_cmd_line(cmd_parts, ed_token) + '\n'
+        exe_cmd_line = ['%Run', str(run_sketch), current_file, py5_switches]
+        exe_cmd_line = ' '.join(exe_cmd_line) + '\n'
         running.get_shell().submit_magic_command(cd_cmd_line + exe_cmd_line)
 
 
