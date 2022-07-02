@@ -299,7 +299,7 @@ def load_plugin() -> None:
     get_workbench().add_command(
       'conversion_tools',
       'py5',
-      tr('Conversion tools'),
+      tr('Conversion helpers'),
       submenu=conversion_tools_menu,
       group=40,
     )
