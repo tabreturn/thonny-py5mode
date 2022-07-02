@@ -20,8 +20,10 @@ from distutils.sysconfig import get_python_lib
 from importlib import machinery, util
 from thonny import editors, get_workbench, running, token_utils
 from thonny import THONNY_USER_DIR
+from thonny.common import BackendEvent
 from thonny.languages import tr
 from thonny.running import Runner
+from thonny.shell import BaseShellText
 from tkinter import colorchooser
 from tkinter.messagebox import showinfo
 try:  # thonny 4 package layout
@@ -251,6 +253,22 @@ def convert_code(translator) -> None:
         showinfo('py5 Conversion', 'Conversion complete', master=workbench)
 
 
+def patched_handle_program_output(self, msg: BackendEvent) -> None:
+    '''catch display window movements and write coords to the config file'''
+    if msg.__getitem__('data')[:8] == '__MOVE__':
+        py5_loc = msg.__getitem__('data')[9:-1].split(' ')
+        # write display window location to config file
+        if len(py5_loc) == 2:
+            py5_loc = py5_loc[0] + ',' + py5_loc[1]
+            print(py5_loc)
+            get_workbench().set_option('run.py5_location', py5_loc)
+        # skip the rest of the function so the shell won't display coords
+        return
+
+    # print the rest of the shell output as usual
+    BaseShellText._original_handle_program_output(self, msg)
+
+
 conversion_tools_menu = tk.Menu(tearoff=0)
 # items for the menu: py5 > Conversion tools
 conversion_tools_menu.add_command(
@@ -314,3 +332,9 @@ def load_plugin() -> None:
     add_about_py5mode_command(40)
     patch_token_coloring()
     set_py5_imported_mode()
+
+    # note that _handle_program_output is not a public api
+    # may need to treat different thonny versions differently
+    h_p_o = BaseShellText._handle_program_output
+    BaseShellText._original_handle_program_output = h_p_o
+    BaseShellText._handle_program_output = patched_handle_program_output
