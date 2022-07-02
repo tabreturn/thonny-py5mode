@@ -51,6 +51,18 @@ def patched_editor_autocomplete(
     return result
 
 
+def patched_handle_program_output(msg) -> None:
+    '''catch display window movements and write coords to the config file'''
+    print('=========================================================')
+    print(msg.__getitem__('data'))
+    '''
+    if msg.__getitem__('data')[:8] == '__MOVE__':
+        print(msg.__getitem__('data')[9:-1])
+        return
+    '''
+from thonny.shell import BaseShellText
+
+
 def load_plugin() -> None:
     '''every thonny plug-in uses this function to load'''
     if os.environ.get('PY5_IMPORTED_MODE', 'False').lower() == 'false':
@@ -62,3 +74,12 @@ def load_plugin() -> None:
     c_e_a = MainCPythonBackend._cmd_editor_autocomplete
     MainCPythonBackend._original_editor_autocomplete = c_e_a
     MainCPythonBackend._cmd_editor_autocomplete = patched_editor_autocomplete
+
+
+    # note that _cmd_editor_autocomplete is not a public api
+    # may need to treat different thonny versions differently
+    # https://groups.google.com/g/thonny/c/wWCeXWpKy8c
+
+    #h_p_o = BaseShellText._handle_program_output
+    #BaseShellText._original_handle_program_output = h_p_o
+    BaseShellText._handle_program_output = patched_handle_program_output
