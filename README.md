@@ -17,7 +17,7 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
     - [thonny-3.3.7-alt.pkg](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.pkg) <- for MacOS
     - [thonny-3.3.7-x86_64-alt.tar.gz](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-x86_64-alt.tar.gz) <- for Linux
 
-   The Thonny 4 IDE (currently in beta) ships with Python 3.10. The thonny-py5mode plug-in should run fine on Thonny 4 for Linux, but macOS and Windows support are in progress. Expanding the *Assets* [for any release](https://github.com/thonny/thonny/releases) will reveal the downloads for Windows/macOS/Linux --
+   The Thonny 4 IDE (currently in beta) ships with Python 3.10. The thonny-py5mode plug-in should run fine on Thonny 4 for Linux; it *should* also run on macOS and Windows. Expanding the *Assets* [for any release](https://github.com/thonny/thonny/releases) will reveal the downloads for Windows/macOS/Linux --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download-thonny.png)
 
@@ -51,11 +51,11 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05-apply-recommended-settings.png)
 
-6. When the py5 *Imported mode for py5* option is checked, Thonny will run your code (using py5's run_sketch command line tool) --
+6. When the py5 *Imported mode for py5* option is checked, Thonny will run your code --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06.01-imported-activated.png)
 
-   Try out an [imported mode](https://py5.ixora.io/content/py5_modes.html#imported-mode) sketch using the green play button (or the F5 or Ctrl+R keyboard shortcuts).
+   Test out an [imported mode](https://py5.ixora.io/content/py5_modes.html#imported-mode) sketch by clicking the green play button (or using the F5 or Ctrl+R keyboard shortcuts). Here is some code:
 
    ```python
    def setup():
@@ -113,4 +113,4 @@ Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring m
 
 ## Todo List
 
-See [discussions on GitHub repo](https://github.com/tabreturn/thonny-py5mode/discussions/17). This plug-in is still very much a work in progress ... please report issues [here](https://github.com/tabreturn/thonny-py5mode/issues).
+See [discussions on GitHub repo](https://github.com/tabreturn/thonny-py5mode/discussions/17). This plug-in is still a work in progress ... please report issues [here](https://github.com/tabreturn/thonny-py5mode/issues).
