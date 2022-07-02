@@ -15,7 +15,7 @@ import time
 import tkinter as tk
 import types
 import webbrowser
-from .about_plugin import open_about_plugin
+from .about_plugin import add_about_py5mode_command, open_about_plugin
 from distutils.sysconfig import get_python_lib
 from importlib import machinery, util
 from thonny import editors, get_workbench, running, token_utils
@@ -303,5 +303,6 @@ def load_plugin() -> None:
       submenu=conversion_tools_menu,
       group=40,
     )
+    add_about_py5mode_command(40)
     patch_token_coloring()
     set_py5_imported_mode()

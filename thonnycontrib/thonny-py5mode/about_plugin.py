@@ -124,10 +124,12 @@ def open_about_plugin() -> None:
     ui_utils.show_dialog(AboutDialog(get_workbench()))
 
 
-get_workbench().add_command(
-  'about_thonny-py5mode',
-  'py5',
-  tr('About thonny-py5mode'),
-  open_about_plugin,
-  group=50,
-)
+def add_about_py5mode_command(group: int) -> None:
+    '''add about thonny-py5mode to py5 menu'''
+    get_workbench().add_command(
+      'about_thonny-py5mode',
+      'py5',
+      tr('About thonny-py5mode'),
+      open_about_plugin,
+      group=group,
+    )
