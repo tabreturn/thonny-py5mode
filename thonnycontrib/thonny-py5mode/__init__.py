@@ -187,7 +187,8 @@ def patched_execute_current(self: Runner, command_name: str) -> None:
 
 def patch_token_coloring() -> None:
     '''add py5 keywords to syntax highlighting'''
-    patched_builtinlist = token_utils._builtinlist + py5_tools.reference.PY5_DIR_STR
+    py5_dir_str = py5_tools.reference.PY5_DIR_STR
+    patched_builtinlist = token_utils._builtinlist + py5_dir_str
     matches = token_utils.matches_any('builtin', patched_builtinlist)
     patched_BUILTIN = r'([^.\'"\\#]\b|^)' + (matches + r'\b')
     token_utils.BUILTIN = patched_BUILTIN
