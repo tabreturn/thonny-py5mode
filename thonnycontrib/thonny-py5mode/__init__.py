@@ -330,3 +330,104 @@ def load_plugin() -> None:
     h_p_o = BaseShellText._handle_program_output
     BaseShellText._original_handle_program_output = h_p_o
     BaseShellText._handle_program_output = patched_handle_program_output
+
+
+
+
+
+    import thonny
+    from thonny import ui_utils
+    from thonny.ui_utils import CommonDialog
+    from tkinter import ttk
+    import subprocess
+    from thonny.workdlg import SubprocessDialog
+    from thonny.running import get_front_interpreter_for_subprocess,get_environment_for_python_subprocess
+
+    class AboutDialog(ui_utils.CommonDialog):
+        def __init__(self, master):
+            super().__init__(master)
+            # window/frame
+            main_frame = ttk.Frame(self)
+            main_frame.grid(sticky=tk.NSEW, ipadx=15, ipady=15)
+            main_frame.rowconfigure(0, weight=1)
+            main_frame.columnconfigure(0, weight=1)
+            self.title(tr('About thonny-py5mode'))
+            self.resizable(height=tk.FALSE, width=tk.FALSE)
+            self.protocol('WM_DELETE_WINDOW', self._ok)
+            # heading
+            heading_font = tk.font.nametofont('TkHeadingFont').copy()
+            heading_font.configure(size=14, weight='bold')
+            heading_label = ttk.Label(
+              main_frame,
+              text='thonny-py5mode\n',
+              font=heading_font,
+              justify='center'
+            )
+            heading_label.grid()
+
+        def _ok(self, event=None) -> None:
+            '''call when closing window, responsible for handling all cleanup'''
+            self.destroy()
+
+
+    def procf():
+        import time
+        print(1)
+        time.sleep(5)
+        print(2)
+        return 2
+
+    def test():
+        args = ['-c "import time; print(1); time.sleep(5); print(2); return 2"']
+
+        #python_exe = get_front_interpreter_for_subprocess().replace("pythonw.exe", "python.exe")
+        python_exe = get_front_interpreter_for_subprocess().replace("python.exe", "pythonw.exe")
+        env = get_environment_for_python_subprocess(python_exe)
+        env["PYTHONIOENCODING"] = "utf-8"
+        env["PYTHONUNBUFFERED"] = "1"
+
+        cmd = [python_exe] + args
+        '''
+        if running_on_windows():
+            creationflags = subprocess.CREATE_NEW_PROCESS_GROUP
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        else:
+            startupinfo = None
+            creationflags = 0
+        '''
+        startupinfo = None
+        creationflags = 0
+
+        proc = subprocess.Popen(
+            cmd,
+            stdin=None,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            shell=False,
+            env=None,
+            universal_newlines=True,
+            startupinfo=None,
+            creationflags=0,
+        )
+        proc.cmd = procf()
+
+
+        #proc = running.create_frontend_python_process(
+        #    ["-c", "'import time; print(1); time.sleep(5); print(2); return 2'"]
+        #)
+
+        dlg = SubprocessDialog(
+                AboutDialog(get_workbench()), proc, title="blah blah", long_description='title', autostart=True
+            )
+        ui_utils.show_dialog(dlg)
+
+
+
+    get_workbench().add_command(
+      'TEST',
+      'py5',
+      tr('test'),
+      test,
+      group=10,
+    )
