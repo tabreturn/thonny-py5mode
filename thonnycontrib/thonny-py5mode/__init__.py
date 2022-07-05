@@ -13,11 +13,10 @@ import site
 import threading
 import time
 import tkinter as tk
-import types
 import webbrowser
 from .about_plugin import add_about_py5mode_command, open_about_plugin
 from distutils.sysconfig import get_python_lib
-from importlib import machinery, util
+from importlib import util
 from thonny import editors, get_workbench, running, token_utils
 from thonny import THONNY_USER_DIR
 from thonny.common import BackendEvent
@@ -188,14 +187,7 @@ def patched_execute_current(self: Runner, command_name: str) -> None:
 
 def patch_token_coloring() -> None:
     '''add py5 keywords to syntax highlighting'''
-    spec = util.find_spec('py5_tools')
-    # cannot use `dir(py5)` because of jvm check, hence direct loading
-    path = pathlib.Path(spec.submodule_search_locations[0]) / 'reference.py'
-    loader = machinery.SourceFileLoader('py5_tools_reference', str(path))
-    module = types.ModuleType(loader.name)
-    loader.exec_module(module)
-    # add keywords to thonny builtin list
-    patched_builtinlist = token_utils._builtinlist + module.PY5_ALL_STR
+    patched_builtinlist = token_utils._builtinlist + py5_tools.reference.PY5_DIR_STR
     matches = token_utils.matches_any('builtin', patched_builtinlist)
     patched_BUILTIN = r'([^.\'"\\#]\b|^)' + (matches + r'\b')
     token_utils.BUILTIN = patched_BUILTIN
