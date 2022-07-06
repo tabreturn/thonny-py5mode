@@ -85,6 +85,7 @@ class JdkDialog(ui_utils.CommonDialog):
         self.main_frame.columnconfigure(0, weight=1)
         self.title(tr('Install JDK for py5'))
         self.resizable(height=tk.FALSE, width=tk.FALSE)
+        self.protocol("WM_DELETE_WINDOW", lambda: None)
         # install message
         message_label = ttk.Label(self.main_frame, text=_INSTALL_JDK_MESSAGE)
         message_label.grid(pady=0, columnspan=2)
@@ -110,11 +111,14 @@ class JdkDialog(ui_utils.CommonDialog):
         '''start jdk downloader thread'''
         self.ok_button.destroy()
         self.cancel_button.destroy()
-        # progressbar
+        # progress bar label
+        dl_label = ttk.Label(self.main_frame, text='Downloading ...')
+        dl_label.grid(row=2, columnspan=2, pady=(0,15))
+        # progress bar
         self.progress_bar = ttk.Progressbar(
           self.main_frame, orient=tk.HORIZONTAL, mode='indeterminate')
         self.progress_bar.grid(
-          row=2, column=0, columnspan=2, sticky=tk.EW, padx=15, pady=(0,15))
+          row=3, column=0, columnspan=2, sticky=tk.EW, padx=15, pady=(0,15))
 
         self.start_downloading()
         download_thread = DownloadJDK()
@@ -138,7 +142,7 @@ class JdkDialog(ui_utils.CommonDialog):
         else:
             self.stopped_downloading()
             self.destroy()
-            showinfo('title', 'done', master=workbench)
+            showinfo('title', 'done', master=get_workbench())
             print('stop dling')
 
 
