@@ -29,7 +29,6 @@ except ImportError:  # thonny 3 package layout
 
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
-_REQUIRE_JDK = 17
 
 
 def apply_recommended_py5_config() -> None:
@@ -126,7 +125,7 @@ def toggle_py5_imported_mode() -> None:
     '''toggle py5 imported mode settings'''
     var = get_workbench().get_variable(_PY5_IMPORTED_MODE)
     var.set(not var.get())
-    install_jdk(_REQUIRE_JDK)
+    install_jdk()
     set_py5_imported_mode()
 
 
@@ -239,71 +238,3 @@ def load_plugin() -> None:
     h_p_o = BaseShellText._handle_program_output
     BaseShellText._original_handle_program_output = h_p_o
     BaseShellText._handle_program_output = patched_handle_program_output
-
-
-
-    from tkinter import ttk
-    from thonny import ui_utils
-    import threading
-
-
-    class PictureDownload(threading.Thread):
-        def __init__(self):
-            super().__init__()
-
-        def run(self):
-            #import time;print(1);time.sleep(5);print(2)
-            install_jdk(_REQUIRE_JDK)
-
-    class AboutDialog(ui_utils.CommonDialog):
-        def __init__(self, master):
-            super().__init__(master)
-            self.resizable(0, 0)
-            self.title('Image Viewer')
-            # Progress frame
-            self.progress_frame = ttk.Frame(self)
-            # configrue the grid to place the progress bar is at the center
-            self.progress_frame.columnconfigure(0, weight=1)
-            self.progress_frame.rowconfigure(0, weight=1)
-            # progressbar
-            self.pb = ttk.Progressbar(
-                self.progress_frame, orient=tk.HORIZONTAL, mode='indeterminate')
-            self.pb.grid(row=0, column=0, sticky=tk.EW, padx=10, pady=10)
-            # place the progress frame
-            self.progress_frame.grid(row=0, column=0, sticky=tk.NSEW)
-            # canvas width &amp; height
-            self.canvas_width = 500
-            self.canvas_height = 500
-            # Button
-            btn = ttk.Button(self, text='Next Picture')
-            btn['command'] = self.handle_download
-            btn.grid(row=1, column=0)
-
-        def start_downloading(self):
-            self.progress_frame.tkraise()
-            self.pb.start(20)
-
-        def stop_downloading(self):
-            self.pb.stop()
-
-        def handle_download(self):
-            self.start_downloading()
-            download_thread = PictureDownload()
-            download_thread.start()
-
-            self.monitor(download_thread)
-
-        def monitor(self, download_thread):
-            if download_thread.is_alive():
-                self.after(100, lambda: self.monitor(download_thread))
-            else:
-                self.stop_downloading()
-                print('stop dling')
-
-    get_workbench().add_command(
-      'NEW_toggle_py5_imported_mode',
-      'py5',
-      tr('NEW Imported mode for py5'),
-      lambda: ui_utils.show_dialog(AboutDialog(get_workbench())),
-      group=10,
-    )
