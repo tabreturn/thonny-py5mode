@@ -102,7 +102,7 @@ class AboutDialog(ui_utils.CommonDialog):
             lambda _: webbrowser.open('https://py5.ixora.io/'),
         )
         credits_label.grid(pady=20)
-        # butttons
+        # buttons
         ok_button = ttk.Button(
           main_frame,
           text=tr('OK'),
