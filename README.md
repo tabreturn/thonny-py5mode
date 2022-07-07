@@ -4,20 +4,17 @@
 
 Use the [Thonny Python IDE](https://thonny.org/) as a Processing PDE alternative for creative coding. *Thonny-py5mode* is a plug-in that installs and configures Thonny for use with [py5](http://py5.ixora.io/), a Python (3.8+) framework that leverages Processing's core libraries.
 
-<!--For more on writing py5 code using this plug-in, [check out my CC Fest presentation](https://github.com/tabreturn/cc-fest-py5) on the topic.-->
-
 
 ## Instructions
 
 If you already have some version of Thonny *that includes Python 3.8+* on your computer, you can skip straight to step 4.
-
 
 1. Download and install the Thonny 3.3.7 *-alt* version of the Thonny IDE (for Python 3.9 support) from [github.com/thonny/thonny/releases/tag/v3.3.7](https://github.com/thonny/thonny/releases/tag/v3.3.7):
     - [thonny-3.3.7-alt.exe](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.exe) <- for Windows
     - [thonny-3.3.7-alt.pkg](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.pkg) <- for MacOS
     - [thonny-3.3.7-x86_64-alt.tar.gz](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-x86_64-alt.tar.gz) <- for Linux
 
-   The Thonny 4 IDE (currently in beta) ships with Python 3.10. The thonny-py5mode plug-in should run fine on Thonny 4 for Linux; it *should* also run on macOS and Windows. Expanding the *Assets* [for any release](https://github.com/thonny/thonny/releases) will reveal the downloads for Windows/macOS/Linux --
+   The Thonny 4 IDE (currently in beta) ships with Python 3.10. The thonny-py5mode plug-in should run fine on Thonny 4 for Linux; it *should* also work with macOS and Windows. Expanding the *Assets* [for any release](https://github.com/thonny/thonny/releases) will reveal the downloads for Windows/macOS/Linux --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download-thonny.png)
 
@@ -29,7 +26,7 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/03.01-manage-plug-ins.png)
 
-   Then search for and install __thonny-py5mode__ plug-in --
+   Then search for and install the __thonny-py5mode__ plug-in --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/03.02-install-plug-in.png)
 
@@ -39,11 +36,11 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.01-activate-imported-mode.png)
 
-   This will download, extract, and set up JDK-11 for you (if you need to know: the plug-in installs JDK in the Thonny user-config directory). Thonny only needs to download JDK the first time you switch to imported mode. __Thonny will appear to freeze__ for a while when it's downloading JDK (I have plans to develop a proper progress indicator later).
+  Click *Proceed* to download, extract, and set up JDK-17 (if you need to know: the plug-in installs JDK in the Thonny user-config directory). Thonny only needs to download JDK the first time you switch to imported mode.
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.02-download-jdk.png)
 
-   You'll be notified once the download is done --
+   You'll be notified once this process completes --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/04.03-download-jdk-done.png)
 
@@ -51,7 +48,7 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/05-apply-recommended-settings.png)
 
-6. When the py5 *Imported mode for py5* option is checked, Thonny will run your code --
+6. When the py5 *Imported mode for py5* option is checked, Thonny can run your py5 code --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06.01-imported-activated.png)
 
@@ -70,7 +67,7 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    NOTE: This mode also runs [static mode](https://py5.ixora.io/content/py5_modes.html#static-mode) sketches (when you don't need a `draw()` function for animation).
 
-   NOTE: If you're having trouble running any sketch, click the stop-sign (🛑) button in the Thonny toolbar. Sometimes an old sketch process doesn't close off properly.
+   Click the stop-sign (🛑) button in the Thonny toolbar to stop your sketch.
 
 
 ## Module Mode Sketches
@@ -81,7 +78,7 @@ To run a py5 [module mode](https://py5.ixora.io/content/py5_modes.html#module-mo
 import py5
 
 def setup():
-    py5.size(200, 200)
+    py5.size(300, 200)
     py5.rect_mode(py5.CENTER)
 
 def draw():
@@ -90,7 +87,7 @@ def draw():
 py5.run_sketch()
 ```
 
-Note that module mode requires an `import py5` and `run_sketch()` line, and `py5.` prefixes for everything.
+Note that module mode requires an `import py5` and `run_sketch()` line, and `py5.` prefixes.
 
 
 ## Useful py5 resources
@@ -101,7 +98,7 @@ py5 is a new version of Processing for Python 3.8+. It makes the Java Processing
 * [py5 discussions/forum](https://github.com/py5coding/py5generator/discussions)
 * [py5 documentation](http://py5.ixora.io/)
 * [py5 examples](https://github.com/py5coding/py5examples)
-* [Processing forum](https://discourse.processing.org/)
+* [Processing forum (Python channel)](https://discourse.processing.org/c/processing-py/9)
 * [Villares' sketch-a-day archive](https://abav.lugaralgum.com/sketch-a-day/)
 
 
@@ -113,4 +110,4 @@ Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring m
 
 ## Todo List
 
-See [discussions on GitHub repo](https://github.com/tabreturn/thonny-py5mode/discussions/17). This plug-in is still a work in progress ... please report issues [here](https://github.com/tabreturn/thonny-py5mode/issues).
+See [discussions on GitHub repo](https://github.com/tabreturn/thonny-py5mode/discussions/17). This plug-in is a work in progress ... please report issues [here](https://github.com/tabreturn/thonny-py5mode/issues).
