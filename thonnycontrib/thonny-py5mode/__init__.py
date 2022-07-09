@@ -232,7 +232,8 @@ def load_plugin() -> None:
       'py5',
       tr('Color selector'),
       color_selector,
-      group=30
+      group=30,
+      default_sequence='<Alt-c>'
     )
     get_workbench().add_command(
       'py5_reference',
