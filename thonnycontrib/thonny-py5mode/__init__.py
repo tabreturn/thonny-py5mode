@@ -83,8 +83,9 @@ def execute_imported_mode() -> None:
         # run command to execute sketch
         working_directory = os.path.dirname(current_file)
         cd_cmd_line = running.construct_cd_command(working_directory) + '\n'
-        exe_cmd_line = ['%Run', str(run_sketch), current_file, py5_switches]
-        exe_cmd_line = ' '.join(exe_cmd_line) + '\n'
+        cmd_parts = ['%Run', str(run_sketch), current_file]
+        exe_cmd_line = running.construct_cmd_line(cmd_parts) + ' '
+        exe_cmd_line += py5_switches + '\n'
         running.get_shell().submit_magic_command(cd_cmd_line + exe_cmd_line)
 
 
