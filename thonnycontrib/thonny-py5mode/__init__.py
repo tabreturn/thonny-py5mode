@@ -217,28 +217,28 @@ def load_plugin() -> None:
       tr('Imported mode for py5'),
       toggle_py5_imported_mode,
       flag_name=_PY5_IMPORTED_MODE,
-      group=10,
+      group=10
     )
     get_workbench().add_command(
       'apply_recommended_py5_config',
       'py5',
       tr('Apply recommended py5 settings'),
       apply_recommended_py5_config,
-      group=20,
+      group=20
     )
     get_workbench().add_command(
       'py5_color_selector',
       'py5',
       tr('Color selector'),
       color_selector,
-      group=30,
+      group=30
     )
     get_workbench().add_command(
       'py5_reference',
       'py5',
       tr('py5 reference'),
       lambda: webbrowser.open('https://py5.ixora.io/reference/sketch.html'),
-      group=30,
+      group=30
     )
     git_raw_user = 'https://raw.githubusercontent.com/tabreturn/'
     git_asset_path = 'processing.py-cheat-sheet/master/py5/py5_cc.pdf'
@@ -247,14 +247,14 @@ def load_plugin() -> None:
       'py5',
       tr('py5 cheatsheet'),
       lambda: webbrowser.open(git_raw_user + git_asset_path),
-      group=30,
+      group=30
     )
     get_workbench().add_command(
       'conversion_tools',
       'py5',
       tr('Conversion helpers'),
       submenu=conversion_tools_menu,
-      group=40,
+      group=40
     )
     get_workbench().add_command(
       'open_folder',
@@ -262,7 +262,7 @@ def load_plugin() -> None:
       tr('Show sketch folder'),
       show_sketch_folder,
       group=40,
-      default_sequence='<Control-Alt-k>',
+      default_sequence='<Control-Alt-k>'
     )
     add_about_py5mode_command(50)
     patch_token_coloring()

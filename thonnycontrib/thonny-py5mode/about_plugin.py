@@ -131,5 +131,5 @@ def add_about_py5mode_command(group: int) -> None:
       'py5',
       tr('About thonny-py5mode'),
       open_about_plugin,
-      group=group,
+      group=group
     )
