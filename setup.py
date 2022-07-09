@@ -29,5 +29,5 @@ setup(
     'thonnycontrib.kyanite_theme_ui',
     'thonnycontrib.thonny-py5mode'
   ],
-  install_requires=['install-jdk', 'py5', 'tkcolorpicker']
+  install_requires=['install-jdk', 'py5', 'pyperclip', 'tkcolorpicker']
 )

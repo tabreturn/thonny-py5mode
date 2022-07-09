@@ -8,6 +8,7 @@ import os
 import pathlib
 import platform
 import py5_tools
+import pyperclip
 import shutil
 import site
 import subprocess
@@ -133,9 +134,9 @@ def toggle_py5_imported_mode() -> None:
     set_py5_imported_mode()
 
 
-def color_selector():
+def color_selector() -> None:
     '''open tkinter color selector'''
-    print(askcolor(title='Color selector'))
+    pyperclip.copy(askcolor(title='Color selector')[1])
 
 
 def convert_code(translator) -> None:
