@@ -6,9 +6,12 @@ import builtins
 import keyword
 import os
 import pathlib
+import platform
 import py5_tools
 import shutil
 import site
+import subprocess
+import sys
 import tkinter as tk
 import webbrowser
 from .about_plugin import add_about_py5mode_command, open_about_plugin
@@ -21,7 +24,7 @@ from thonny.languages import tr
 from thonny.running import Runner
 from thonny.shell import BaseShellText
 from tkcolorpicker import askcolor
-from tkinter.messagebox import showinfo
+from tkinter.messagebox import showerror, showinfo
 try:  # thonny 4 package layout
     from thonny import get_sys_path_directory_containg_plugins
 except ImportError:  # thonny 3 package layout
@@ -182,6 +185,30 @@ conversion_tools_menu.add_command(
   command=lambda: convert_code(py5_tools.translators.module2imported))
 
 
+def show_sketch_folder() -> None:
+    '''open the enclosing folder of the current file'''
+    current_editor = get_workbench().get_editor_notebook().get_current_editor()
+    # check if the editor is empty/blank
+    try:
+        filename = current_editor.get_filename()
+    except AttributeError:
+        showerror('Editor is empty', 'Do you have a file open in the editor?')
+        return
+    # check if the file isn't an <untitled> (yet to be saved) file
+    try:
+        path = os.path.dirname(filename)
+    except TypeError:
+        showerror('File not found', 'Have you saved your file somewhere yet?')
+        return
+    # open file manager for mac/linux/windows
+    if sys.platform == 'darwin':
+        subprocess.Popen(['open', path])
+    elif sys.platform == 'linux':
+        subprocess.Popen(['xdg-open', path])
+    else:
+        subprocess.Popen(['explorer', path])
+
+
 def load_plugin() -> None:
     get_workbench().set_default(_PY5_IMPORTED_MODE, False)
     get_workbench().add_command(
@@ -229,7 +256,15 @@ def load_plugin() -> None:
       submenu=conversion_tools_menu,
       group=40,
     )
-    add_about_py5mode_command(40)
+    get_workbench().add_command(
+      'open_folder',
+      'py5',
+      tr('Show sketch folder'),
+      show_sketch_folder,
+      group=40,
+      default_sequence='<Control-Alt-k>',
+    )
+    add_about_py5mode_command(50)
     patch_token_coloring()
     set_py5_imported_mode()
 
