@@ -20,7 +20,7 @@ from thonny.common import BackendEvent
 from thonny.languages import tr
 from thonny.running import Runner
 from thonny.shell import BaseShellText
-from tkinter import colorchooser
+from tkcolorpicker import askcolor
 from tkinter.messagebox import showinfo
 try:  # thonny 4 package layout
     from thonny import get_sys_path_directory_containg_plugins
@@ -132,8 +132,7 @@ def toggle_py5_imported_mode() -> None:
 
 def color_selector():
     '''open tkinter color selector'''
-    colors = colorchooser.askcolor(title='Color Selector')
-    print(colors[1])
+    print(askcolor(title='Color selector'))
 
 
 def convert_code(translator) -> None:
