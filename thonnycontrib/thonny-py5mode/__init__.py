@@ -128,6 +128,8 @@ def set_py5_imported_mode() -> None:
             # patched method non-existant when imported mode active at launch
             try:
                 Runner.execute_current = Runner._original_execute_current
+                # this line disable py5 autocompletion in this instance
+                get_runner().restart_backend(False)
             except AttributeError:
                 pass
 
