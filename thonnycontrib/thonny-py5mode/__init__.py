@@ -19,7 +19,7 @@ from .about_plugin import add_about_py5mode_command, open_about_plugin
 from .install_jdk import install_jdk
 from distutils.sysconfig import get_python_lib
 from importlib import util
-from thonny import editors, get_workbench, running, token_utils
+from thonny import editors, get_workbench, get_runner, running, token_utils
 from thonny.common import BackendEvent
 from thonny.languages import tr
 from thonny.running import Runner
@@ -119,10 +119,16 @@ def set_py5_imported_mode() -> None:
         if get_workbench().get_option(_PY5_IMPORTED_MODE):
             Runner._original_execute_current = Runner.execute_current
             Runner.execute_current = patched_execute_current
+            # must restart backend for py5 autocompletion upon installing jdk
+            try:
+                get_runner().restart_backend(False)
+            except AttributeError:
+                pass
         else:
+            # patched method non-existant when imported mode active at launch
             try:
                 Runner.execute_current = Runner._original_execute_current
-            except Exception:
+            except AttributeError:
                 pass
 
 
