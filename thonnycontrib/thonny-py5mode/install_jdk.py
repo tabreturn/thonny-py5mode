@@ -117,7 +117,6 @@ class JdkDialog(ui_utils.CommonDialog):
         )
         self.cancel_button.grid(row=2, column=1, padx=15, pady=15, sticky='e')
 
-
     def _proceed(self, event=None) -> None:
         '''start jdk downloader thread'''
         self.ok_button.destroy()
@@ -125,12 +124,12 @@ class JdkDialog(ui_utils.CommonDialog):
         # progress bar label
         msg = f'Downloading and extracting JDK {_REQUIRE_JDK} ...'
         dl_label = ttk.Label(self.main_frame, text=msg)
-        dl_label.grid(row=1, columnspan=2, pady=(0,15))
+        dl_label.grid(row=1, columnspan=2, pady=(0, 15))
         # progress bar
         self.progress_bar = ttk.Progressbar(
           self.main_frame, orient=tk.HORIZONTAL, mode='indeterminate')
         self.progress_bar.grid(
-          row=2, column=0, columnspan=2, padx=15, pady=(0,15), sticky='ew')
+          row=2, column=0, columnspan=2, padx=15, pady=(0, 15), sticky='ew')
         # start progress bar animation and download thread
         self.main_frame.tkraise()
         self.progress_bar.start(20)
