@@ -32,7 +32,7 @@ except ImportError:  # thonny 3 package layout
 # modified tkcolorpicker (by j4321) to work with thonny for macos
 # https://github.com/tabreturn/thonny-py5mode-tkcolorpicker
 # hopefully, pull-request is accepted so this can install via pypi
-from .tkcolorpicker import askcolor
+from .py5colorpicker.tkcolorpicker import askcolor
 
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
