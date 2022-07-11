@@ -27,7 +27,8 @@ setup(
     'thonnycontrib.backend',
     'thonnycontrib.kyanite_theme_syntax',
     'thonnycontrib.kyanite_theme_ui',
-    'thonnycontrib.thonny-py5mode'
+    'thonnycontrib.thonny-py5mode',
+    'thonnycontrib.thonny-py5mode.py5colorpicker.tkcolorpicker'
   ],
   install_requires=[
     'install-jdk==0.3.0',
