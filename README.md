@@ -104,8 +104,7 @@ py5 is a new version of Processing for Python 3.8+. It makes the Java Processing
 
 ## Credits
 
-Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring me to develop this plug-in, [hx2A](https://github.com/hx2A/) for the awesome [py5 project](https://py5.ixora.io/), and the [Thonny folks](https://github.com/thonny) for their fantastic IDE.
-
+Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring me to develop this plug-in, [hx2A](https://github.com/hx2A/) for the awesome [py5 project](https://py5.ixora.io/), and the [Thonny folks](https://github.com/thonny) for their fantastic IDE. The *Color Selector* incorporates Juliette Monsel's excellent [tkColorPicker](https://github.com/j4321/tkColorPicker) module.
 
 
 ## Todo List

@@ -32,7 +32,6 @@ setup(
   install_requires=[
     'install-jdk==0.3.0',
     'py5==0.8.0a2',
-    'pyperclip==1.8.2',
-    'tkcolorpicker==2.1.3'
+    'pyperclip==1.8.2'
   ]
 )

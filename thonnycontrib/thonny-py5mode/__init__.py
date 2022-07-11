@@ -24,12 +24,15 @@ from thonny.common import BackendEvent
 from thonny.languages import tr
 from thonny.running import Runner
 from thonny.shell import BaseShellText
-from tkcolorpicker import askcolor
 from tkinter.messagebox import showerror, showinfo
 try:  # thonny 4 package layout
     from thonny import get_sys_path_directory_containg_plugins
 except ImportError:  # thonny 3 package layout
     pass
+# modified tkcolorpicker (by j4321) to work with thonny for macos
+# https://github.com/tabreturn/thonny-py5mode-tkcolorpicker
+# hopefully, pull-request is accepted so this can install via pypi
+from .tkcolorpicker import askcolor
 
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
@@ -150,7 +153,7 @@ def toggle_py5_imported_mode() -> None:
 
 def color_selector() -> None:
     '''open tkinter color selector'''
-    pyperclip.copy(askcolor(title='Color selector')[1])
+    pyperclip.copy(str(askcolor(title='Color selector')[1]))
 
 
 def convert_code(translator) -> None:
