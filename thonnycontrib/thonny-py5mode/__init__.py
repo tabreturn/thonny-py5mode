@@ -7,18 +7,18 @@ import keyword
 import os
 import pathlib
 import platform
-import py5_tools
 import pyperclip
 import shutil
 import site
 import subprocess
 import sys
 import tkinter as tk
+import types
 import webbrowser
 from .about_plugin import add_about_py5mode_command, open_about_plugin
 from .install_jdk import install_jdk
 from distutils.sysconfig import get_python_lib
-from importlib import util
+from importlib import machinery, util
 from thonny import editors, get_workbench, get_runner, running, token_utils
 from thonny.common import BackendEvent
 from thonny.languages import tr
@@ -100,8 +100,14 @@ def patched_execute_current(self: Runner, command_name: str) -> None:
 
 def patch_token_coloring() -> None:
     '''add py5 keywords to syntax highlighting'''
-    py5_dir_str = py5_tools.reference.PY5_DIR_STR
-    patched_builtinlist = token_utils._builtinlist + py5_dir_str
+    spec = util.find_spec('py5_tools')
+    # cannot use `dir(py5)` because of jvm check, hence direct loading
+    path = pathlib.Path(spec.submodule_search_locations[0]) / 'reference.py'
+    loader = machinery.SourceFileLoader('py5_tools_reference', str(path))
+    module = types.ModuleType(loader.name)
+    loader.exec_module(module)
+    # add keywords to thonny builtin list
+    patched_builtinlist = token_utils._builtinlist + module.PY5_ALL_STR
     matches = token_utils.matches_any('builtin', patched_builtinlist)
     patched_BUILTIN = r'([^.\'"\\#]\b|^)' + (matches + r'\b')
     token_utils.BUILTIN = patched_BUILTIN
@@ -181,19 +187,6 @@ def patched_handle_program_output(self, msg: BackendEvent) -> None:
     BaseShellText._original_handle_program_output(self, msg)
 
 
-conversion_tools_menu = tk.Menu(tearoff=0)
-# items for the menu: py5 > Conversion tools
-conversion_tools_menu.add_command(
-  label='Processing.py → py5 imported mode',
-  command=lambda: convert_code(py5_tools.translators.processingpy2imported))
-conversion_tools_menu.add_command(
-  label='py5 module mode → imported mode',
-  command=lambda: convert_code(py5_tools.translators.imported2module))
-conversion_tools_menu.add_command(
-  label='py5 imported mode → module mode',
-  command=lambda: convert_code(py5_tools.translators.module2imported))
-
-
 def show_sketch_folder() -> None:
     '''open the enclosing folder of the current file'''
     current_editor = get_workbench().get_editor_notebook().get_current_editor()
@@ -258,13 +251,6 @@ def load_plugin() -> None:
       tr('py5 cheatsheet'),
       lambda: webbrowser.open(git_raw_user + git_asset_path),
       group=30
-    )
-    get_workbench().add_command(
-      'conversion_tools',
-      'py5',
-      tr('Conversion helpers'),
-      submenu=conversion_tools_menu,
-      group=40
     )
     get_workbench().add_command(
       'open_folder',

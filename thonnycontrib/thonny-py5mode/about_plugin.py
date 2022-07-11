@@ -14,11 +14,7 @@ from thonny.languages import tr
 from ._version import __version__
 
 
-try:
-    import py5
-    _PY5_VERSION = py5.__version__
-except JVMNotFoundException:  # jre not installed (yet?)
-    _PY5_VERSION = 'version unknown (did you run py5 > Imported mode for py5?)'
+_PY5_VERSION = 'version details in Tools > Manage plug-ins'
 
 
 def get_os_word_size_guess() -> None:
