@@ -9,14 +9,19 @@ Use the [Thonny Python IDE](https://thonny.org/) as a Processing PDE alternative
 
 If you already have some version of Thonny *that includes Python 3.8+* on your computer, you can skip straight to step 4.
 
-1. Download and install the Thonny 3.3.7 *-alt* version of the Thonny IDE (for Python 3.9 support) from [github.com/thonny/thonny/releases/tag/v3.3.7](https://github.com/thonny/thonny/releases/tag/v3.3.7):
-    - [thonny-3.3.7-alt.exe](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.exe) <- for Windows
-    - [thonny-3.3.7-alt.pkg](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-alt.pkg) <- for MacOS
-    - [thonny-3.3.7-x86_64-alt.tar.gz](https://github.com/thonny/thonny/releases/download/v3.3.7/thonny-3.3.7-x86_64-alt.tar.gz) <- for Linux
-
-   The Thonny 4 IDE (currently in beta) ships with Python 3.10. The thonny-py5mode plug-in should run fine on Thonny 4 for Linux; it *should* also work with macOS and Windows. Expanding the *Assets* [for any release](https://github.com/thonny/thonny/releases) will reveal the downloads for Windows/macOS/Linux --
+1. Download and install the Thonny IDE from [https://github.com/thonny/thonny/releases](https://github.com/thonny/thonny/releases). Expanding the *Assets* will reveal the downloads for Windows/macOS/Linux --
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download-thonny.png)
+   
+   For your convenience, here are direct links to the downloads for Thonny 4.0.0b3:
+   
+    - [thonny-4.0.0b3.exe](https://github.com/thonny/thonny/releases/download/v4.0.0b3/thonny-4.0.0b3.exe) <- for Windows
+    - [thonny-4.0.0b3.pkg](https://github.com/thonny/thonny/releases/download/v4.0.0b3/thonny-4.0.0b3.pkg) <- for MacOS
+    - [thonny-4.0.0b3-x86_64.tar.gz](https://github.com/thonny/thonny/releases/download/v4.0.0b3/thonny-4.0.0b3-x86_64.tar.gz) <- for Linux
+   
+   The thonny-py5mode plug-in will run fine with Thonny 4 (currently in beta) because it ships with Python 3.10. If you want to use a Thonny 3 release, use the [Thonny 3.3.7](https://github.com/thonny/thonny/releases/tag/v3.3.7) *-alt* version for your platform. The alt-variants are bundled with Python 3.9.5 (instead of 3.7.9).
+
+   
 
 2. Start Thonny. If you're running it for the first time, just accept the *Standard* settings.
 
@@ -104,7 +109,7 @@ py5 is a new version of Processing for Python 3.8+. It makes the Java Processing
 
 ## Credits
 
-Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring me to develop this plug-in, [hx2A](https://github.com/hx2A/) for the awesome [py5 project](https://py5.ixora.io/), and the [Thonny folks](https://github.com/thonny) for their fantastic IDE. The *Color Selector* incorporates Juliette Monsel's excellent [tkColorPicker](https://github.com/j4321/tkColorPicker) module.
+Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring me to develop this plug-in, [hx2A](https://github.com/hx2A/) for the awesome [py5 project](https://py5.ixora.io/), and the [Thonny folks](https://github.com/thonny) for their fantastic IDE. The *Color selector* incorporates Juliette Monsel's excellent [tkColorPicker](https://github.com/j4321/tkColorPicker) module.
 
 
 ## Todo List
