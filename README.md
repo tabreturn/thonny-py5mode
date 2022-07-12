@@ -15,9 +15,9 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
    
    For your convenience, here are direct links to the downloads for Thonny 4.0.0b3:
    
-    - [thonny-4.0.0b3.exe](https://github.com/thonny/thonny/releases/download/v4.0.0b3/thonny-4.0.0b3.exe) <- for Windows
-    - [thonny-4.0.0b3.pkg](https://github.com/thonny/thonny/releases/download/v4.0.0b3/thonny-4.0.0b3.pkg) <- for MacOS
-    - [thonny-4.0.0b3-x86_64.tar.gz](https://github.com/thonny/thonny/releases/download/v4.0.0b3/thonny-4.0.0b3-x86_64.tar.gz) <- for Linux
+    - [thonny-4.0.0b3.exe](https://github.com/thonny/thonny/releases/download/v4.0.0b3/thonny-4.0.0b3.exe) 🢠 for Windows
+    - [thonny-4.0.0b3.pkg](https://github.com/thonny/thonny/releases/download/v4.0.0b3/thonny-4.0.0b3.pkg) 🢠 for MacOS
+    - [thonny-4.0.0b3-x86_64.tar.gz](https://github.com/thonny/thonny/releases/download/v4.0.0b3/thonny-4.0.0b3-x86_64.tar.gz) 🢠 for Linux
    
    The thonny-py5mode plug-in will run fine with Thonny 4 (currently in beta) because it ships with Python 3.10. If you want to use a Thonny 3 release, use the [Thonny 3.3.7](https://github.com/thonny/thonny/releases/tag/v3.3.7) *-alt* version for your platform. The alt-variants are bundled with Python 3.9.5 (instead of 3.7.9).
 
