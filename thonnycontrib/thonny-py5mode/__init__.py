@@ -153,9 +153,10 @@ def toggle_py5_imported_mode() -> None:
 
 def color_selector() -> None:
     '''open tkinter color selector put color on clipboard on close'''
-    dialog_result = askcolor(title='Color selector')
-    hex_color_as_string = f"'{dialog_result[1]}'"
-    pyperclip.copy(hex_color_as_string)
+    dialog_result = askcolor(title='Color selector')[1]
+    if dialog_result is not None:
+        hex_color_as_string = f"'{dialog_result}'"
+        pyperclip.copy(hex_color_as_string)
 
 
 def convert_code(translator) -> None:
