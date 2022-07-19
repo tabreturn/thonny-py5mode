@@ -34,6 +34,7 @@ except ImportError:  # thonny 3 package layout
 from .py5colorpicker.tkcolorpicker import modeless_colorpicker
 
 
+
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
 color_selector_open = False
 
