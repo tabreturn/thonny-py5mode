@@ -151,11 +151,11 @@ def toggle_py5_imported_mode() -> None:
 
 
 def color_selector() -> None:
-    '''open tkinter color selector put color on clipboard on close'''
+    '''open tkinter modeless color selector if one is not already open'''
     global color_selector_open
     if not color_selector_open:
         color_selector_open = True
-        modeless_colorpicker(title=tr('Color selector'))
+        modeless_colorpicker(title=tr('Color Selector'))
         color_selector_open = False
     
 def convert_code(translator) -> None:
