@@ -7,7 +7,6 @@ import keyword
 import os
 import pathlib
 import platform
-import pyperclip
 import shutil
 import site
 import subprocess
@@ -30,12 +29,14 @@ try:  # thonny 4 package layout
 except ImportError:  # thonny 3 package layout
     pass
 # modified tkcolorpicker (by j4321) to work with thonny for macos
-# fork: https://github.com/tabreturn/thonny-py5mode-tkcolorpicker
-from .py5colorpicker.tkcolorpicker import askcolor
+# https://github.com/tabreturn/thonny-py5mode-tkcolorpicker
+# hopefully, pull-request is accepted so this can install via pypi
+from .py5colorpicker.tkcolorpicker import modeless_colorpicker
+
 
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
-
+color_selector_open = False
 
 def apply_recommended_py5_config() -> None:
     '''apply some recommended settings for thonny py5 work'''
@@ -151,10 +152,13 @@ def toggle_py5_imported_mode() -> None:
 
 
 def color_selector() -> None:
-    '''open tkinter color selector'''
-    pyperclip.copy(str(askcolor(title='Color selector')[1]))
-
-
+    '''open tkinter modeless color selector if one is not already open'''
+    global color_selector_open
+    if not color_selector_open:
+        color_selector_open = True
+        modeless_colorpicker(title=tr('Color Selector'))
+        color_selector_open = False
+    
 def convert_code(translator) -> None:
     '''function to handle different py5_tools conversions'''
     workbench = get_workbench()
