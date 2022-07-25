@@ -30,7 +30,7 @@ except ImportError:  # thonny 3 package layout
     pass
 # modified tkcolorpicker (by j4321) to work with thonny for macos
 # https://github.com/tabreturn/thonny-py5mode-tkcolorpicker
-from .py5colorpicker.tkcolorpicker import askcolor
+from .py5colorpicker.tkcolorpicker import modeless_colorpicker
 
 
 _PY5_IMPORTED_MODE = 'run.py5_imported_mode'
@@ -156,7 +156,7 @@ def color_selector() -> None:
     # ... if one is not already open
     if not color_selector_open:
         color_selector_open = True
-        askcolor(title=tr('Color selector'))
+        modeless_colorpicker(title=tr('Color selector'))
         color_selector_open = False
 
 
