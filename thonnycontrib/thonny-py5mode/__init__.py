@@ -264,8 +264,7 @@ def load_plugin() -> None:
       'py5',
       tr('Show sketch folder'),
       show_sketch_folder,
-      group=40,
-      default_sequence='<Control-Alt-k>'
+      group=40
     )
     add_about_py5mode_command(50)
     patch_token_coloring()
