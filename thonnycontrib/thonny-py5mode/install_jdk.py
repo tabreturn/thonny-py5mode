@@ -62,14 +62,9 @@ class DownloadJDK(threading.Thread):
             # delete existing thonny-py5mode jdk (if one exists)
             if name.startswith(jdk_dir):
                 shutil.rmtree(pathlib.Path(install_to) / name)
-        # download jdk
-        print(f'> downloading jdk-{_REQUIRE_JDK}')
-        jdk_file = jdk._download(jdk.get_download_url(_REQUIRE_JDK))
-        # extract jdk
-        print('> extracting jdk')
-        jdk._USER_DIR = THONNY_USER_DIR
-        jdk_ext = jdk._get_normalized_compressed_file_ext(jdk_file)
-        jdk._decompress_archive(jdk_file, jdk_ext, THONNY_USER_DIR)
+
+        # download and extract jdk
+        jdk.install(_REQUIRE_JDK, path=THONNY_USER_DIR)
 
         for name in os.listdir(THONNY_USER_DIR):
             # rename extracted jdk directory to jdk-<version#>
@@ -79,6 +74,7 @@ class DownloadJDK(threading.Thread):
                 os.rename(src, dest)
                 print('> rename extracted jdk')
                 break
+        
         # set java_home
         print('> set java_home')
         set_java_home(pathlib.Path(THONNY_USER_DIR) / dest)
