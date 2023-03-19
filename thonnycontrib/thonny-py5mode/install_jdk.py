@@ -74,7 +74,7 @@ class DownloadJDK(threading.Thread):
                 os.rename(src, dest)
                 print('> rename extracted jdk')
                 break
-        
+
         # set java_home
         print('> set java_home')
         set_java_home(pathlib.Path(THONNY_USER_DIR) / dest)
