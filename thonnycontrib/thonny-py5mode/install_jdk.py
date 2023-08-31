@@ -42,6 +42,10 @@ def jdk_install_exists() -> bool:
 def set_java_home(jdk_path: pathlib.Path) -> None:
     '''add jdk path to config file (tools > options > general > env vars)'''
     jdk_path = 'JAVA_HOME=' + str(jdk_path)
+    # if mac arm system, add /contents/home to jdk path
+    if str(jdk.OS) == 'mac' and str(jdk.ARCH) == 'arm':
+        jdk_path += '/Contents/Home'
+
     env_vars = get_workbench().get_option('general.environment')
 
     if jdk_path not in env_vars:

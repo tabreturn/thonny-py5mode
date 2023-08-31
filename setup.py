@@ -31,7 +31,7 @@ setup(
     'thonnycontrib.thonny-py5mode.py5colorpicker.tkcolorpicker'
   ],
   install_requires=[
-    'install-jdk==1.0.2',
+    'install-jdk==1.1.0',
     'py5==0.8.0a2',
     'pyclip==0.7.0'
   ]
