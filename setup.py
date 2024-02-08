@@ -32,7 +32,7 @@ setup(
   ],
   install_requires=[
     'install-jdk==1.1.0',
-    'py5==0.8.0a2',
+    'py5>=0.8.0a2',
     'pyclip==0.7.0'
   ]
 )
