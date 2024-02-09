@@ -2,7 +2,7 @@
 
 *A py5 plug-in for Thonny*
 
-Use the [Thonny Python IDE](https://thonny.org/) as a Processing PDE alternative for creative coding. *Thonny-py5mode* is a plug-in that installs and configures Thonny for use with [py5](http://py5.ixora.io/), a Python (3.8+) framework that leverages Processing's core libraries.
+Use the [Thonny Python IDE](https://thonny.org/) as a Processing PDE alternative for creative coding. *Thonny-py5mode* is a plug-in that installs and configures Thonny for use with [py5](https://py5coding.org/), a Python (3.8+) framework that leverages Processing's core libraries.
 
 
 ## Instructions
@@ -57,7 +57,7 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06.01-imported-activated.png)
 
-   Test out an [imported mode](https://py5.ixora.io/content/py5_modes.html#imported-mode) sketch by clicking the green play button (or using the F5 or Ctrl+R keyboard shortcuts). Here is some code:
+   Test out an [imported mode](https://py5coding.org/content/py5_modes.html#imported-mode) sketch by clicking the green play button (or using the F5 or Ctrl+R keyboard shortcuts). Here is some code:
 
    ```python
    def setup():
@@ -70,14 +70,14 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/06.02-running-sketch.png)
 
-   NOTE: This mode also runs [static mode](https://py5.ixora.io/content/py5_modes.html#static-mode) sketches (when you don't need a `draw()` function for animation).
+   NOTE: This mode also runs [static mode](https://py5coding.org/content/py5_modes.html#static-mode) sketches (when you don't need a `draw()` function for animation).
 
    Click the stop-sign (🛑) button in the Thonny toolbar to stop your sketch.
 
 
 ## Module Mode Sketches
 
-To run a py5 [module mode](https://py5.ixora.io/content/py5_modes.html#module-mode) sketch, deactivate/uncheck *py5 > Imported mode for py5* first so that Thonny returns to its normal run behaviour (for running any Python script). As an example, you can try this code:
+To run a py5 [module mode](https://py5coding.org/content/py5_modes.html#module-mode) sketch, deactivate/uncheck *py5 > Imported mode for py5* first so that Thonny returns to its normal run behaviour (for running any Python script). As an example, you can try this code:
 
 ```python
 import py5
@@ -101,15 +101,15 @@ py5 is a new version of Processing for Python 3.8+. It makes the Java Processing
 
 * [py5 cheatsheet](https://raw.githubusercontent.com/tabreturn/processing.py-cheat-sheet/master/py5/py5_cc.pdf)
 * [py5 discussions/forum](https://github.com/py5coding/py5generator/discussions)
-* [py5 documentation](http://py5.ixora.io/)
+* [py5 documentation](https://py5coding.org/)
 * [py5 examples](https://github.com/py5coding/py5examples)
-* [Processing forum (Python channel)](https://discourse.processing.org/c/processing-py/9)
+* [Processing forum (py5 channel)](https://discourse.processing.org/c/28)
 * [Villares' sketch-a-day archive](https://abav.lugaralgum.com/sketch-a-day/)
 
 
 ## Credits
 
-Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring me to develop this plug-in, [hx2A](https://github.com/hx2A/) for the awesome [py5 project](https://py5.ixora.io/), and the [Thonny folks](https://github.com/thonny) for their fantastic IDE. The *Color selector* incorporates Juliette Monsel's excellent [tkColorPicker](https://github.com/j4321/tkColorPicker) module.
+Thanks [villares](https://github.com/villares/thonny-py5-runner) for inspiring me to develop this plug-in, [hx2A](https://github.com/hx2A/) for the awesome [py5 project](https://py5coding.org/), and the [Thonny folks](https://github.com/thonny) for their fantastic IDE. The *Color selector* incorporates Juliette Monsel's excellent [tkColorPicker](https://github.com/j4321/tkColorPicker) module.
 
 
 ## Todo List
