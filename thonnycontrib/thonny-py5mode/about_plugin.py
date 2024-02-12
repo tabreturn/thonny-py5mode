@@ -95,7 +95,7 @@ class AboutDialog(ui_utils.CommonDialog):
         credits_label.grid()
         credits_label.bind(
             '<Button-1>',
-            lambda _: webbrowser.open('https://py5.ixora.io/'),
+            lambda _: webbrowser.open('https://py5coding.org/'),
         )
         credits_label.grid(pady=20)
         # buttons
