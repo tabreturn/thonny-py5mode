@@ -27,7 +27,11 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/02-start-splash.png)
 
-3. Once Thonny is open, select *Tools > Manage plugins...*
+3a. Once Thonny is open, select *Tools > Manage packages...*
+
+   Then search for and install the __py5__ library --
+   
+3b. Still in Thonny, select *Tools > Manage plugins...*
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/03.01-manage-plug-ins.png)
 
