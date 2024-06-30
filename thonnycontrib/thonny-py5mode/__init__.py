@@ -247,7 +247,7 @@ def load_plugin() -> None:
       'py5_reference',
       'py5',
       tr('py5 reference'),
-      lambda: webbrowser.open('https://py5coding.org/reference/sketch.html'),
+      lambda: webbrowser.open('https://py5coding.org/reference/'),
       group=30
     )
     git_raw_user = 'https://raw.githubusercontent.com/tabreturn/'
