@@ -19,6 +19,7 @@ from .install_jdk import install_jdk, jdk_install_exists
 from distutils.sysconfig import get_python_lib
 from importlib import machinery, util
 from thonny import editors, get_workbench, get_runner, running, token_utils
+from thonny import THONNY_USER_DIR
 from thonny.common import BackendEvent
 from thonny.languages import tr
 from thonny.running import Runner
@@ -219,8 +220,11 @@ def show_sketch_folder() -> None:
 
 
 def load_plugin() -> None:
-    # For the portable version only: this triggers the JAVA_HOME update 
-    jdk_install_exists() 
+    # On portable Thonny, triggers JAVA_HOME update at Options... > Env. vars
+    thonny_executable_folder = pathlib.Path(THONNY_USER_DIR).parent
+    portable_flag_file = thonny_executable_folder / "portable_thonny.ini"
+    if portable_flag_file.is_file():
+        jdk_install_exists() 
     
     get_workbench().set_default(_PY5_IMPORTED_MODE, False)
     get_workbench().add_command(
