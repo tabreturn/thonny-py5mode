@@ -15,7 +15,7 @@ import tkinter as tk
 import types
 import webbrowser
 from .about_plugin import add_about_py5mode_command, open_about_plugin
-from .install_jdk import install_jdk
+from .install_jdk import install_jdk, jdk_install_exists
 from distutils.sysconfig import get_python_lib
 from importlib import machinery, util
 from thonny import editors, get_workbench, get_runner, running, token_utils
@@ -219,6 +219,9 @@ def show_sketch_folder() -> None:
 
 
 def load_plugin() -> None:
+    # For the portable version only: this triggers the JAVA_HOME update 
+    jdk_install_exists() 
+    
     get_workbench().set_default(_PY5_IMPORTED_MODE, False)
     get_workbench().add_command(
       'toggle_py5_imported_mode',
