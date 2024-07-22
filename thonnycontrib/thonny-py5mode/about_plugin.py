@@ -78,7 +78,7 @@ class AboutDialog(ui_utils.CommonDialog):
           main_frame,
           justify=tk.CENTER,
           text=system_desc
-          + '\n Python ' + get_python_version_string(maxsize=sys.maxsize)
+          + '\n Python ' + get_python_version_string()
           + '\n py5 ' + _PY5_VERSION
           + '\n Thonny ' + get_version()
         )
