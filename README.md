@@ -13,11 +13,11 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
 
    ![](https://raw.githubusercontent.com/tabreturn/thonny-py5mode/main/screenshots/01-download-thonny.png)
    
-   For your convenience, here are direct links to the downloads for Thonny 4.1.4:
+   For your convenience, here are direct links to the downloads for Thonny 4.1.7:
    
-    - [thonny-4.1.4.exe](https://github.com/thonny/thonny/releases/download/v4.1.4/thonny-4.1.4.exe) 🢠 for Windows
-    - [thonny-4.1.4.pkg](https://github.com/thonny/thonny/releases/download/v4.1.4/thonny-4.1.4.pkg) 🢠 for MacOS
-    - [thonny-4.1.4-x86_64.tar.gz](https://github.com/thonny/thonny/releases/download/v4.1.4/thonny-4.1.4-x86_64.tar.gz) 🢠 for Linux
+    - [thonny-4.1.7.exe](https://github.com/thonny/thonny/releases/download/v4.1.7/thonny-4.1.7.exe) 🢠 for Windows
+    - [thonny-4.1.7.pkg](https://github.com/thonny/thonny/releases/download/v4.1.7/thonny-4.1.7.pkg) 🢠 for MacOS
+    - [thonny-4.1.7-x86_64.tar.gz](https://github.com/thonny/thonny/releases/download/v4.1.7/thonny-4.1.7.bash) 🢠 for Linux
    
    The thonny-py5mode plug-in will run fine with Thonny 4 because it ships with Python 3.10.
 
