@@ -17,11 +17,9 @@ If you already have some version of Thonny *that includes Python 3.8+* on your c
    
     - [thonny-4.1.7.exe](https://github.com/thonny/thonny/releases/download/v4.1.7/thonny-4.1.7.exe) 🢠 for Windows
     - [thonny-4.1.7.pkg](https://github.com/thonny/thonny/releases/download/v4.1.7/thonny-4.1.7.pkg) 🢠 for MacOS
-    - [thonny-4.1.7-x86_64.tar.gz](https://github.com/thonny/thonny/releases/download/v4.1.7/thonny-4.1.7.bash) 🢠 for Linux
+    - [thonny-4.1.7.bash](https://github.com/thonny/thonny/releases/download/v4.1.7/thonny-4.1.7.bash) 🢠 for Linux
    
    The thonny-py5mode plug-in will run fine with Thonny 4 because it ships with Python 3.10.
-
-   
 
 2. Start Thonny. If you're running it for the first time, just accept the *Standard* settings.
 
